@@ -8,9 +8,9 @@
   --color-black-faint:rgba(57, 57, 59, 0.524);
   --color-primary:#386CBB;
   
-  --color-background:rgb(19, 17, 17);
+  --color-background:#161b33;
   --color-secondary:#EEECEC;
-  --color-out-secondary:#D9D9D9;
+  --color-out-secondary:#0d0c1d;
   --color-white-faint:#B4B4B4;
   --color-element:#FFFFFF;
   --font-primary-font:"Jockey One", sans-serif;
@@ -35,11 +35,12 @@
   .skill{
     @apply py-1 px-3 h-[50px] rounded-lg font-semibold bg-element m-[4px] text-primary text-center inline-block ;
   }
+
   .navbar{
-    @apply p-[20px] w-fit rounded-2xl text-lg bg-primary font-primary-font sm:opacity-90 opacity-90 text-element fixed;
+    @apply p-[15px] w-fit rounded-2xl text-lg bg-primary font-primary-font sm:opacity-90 opacity-90 text-element fixed shadow-sm;
   }
   .social{
-    @apply w-[50px] h-[50px] rounded-full bg-element hover:scale-110 transition-all duration-300 p-2;
+    @apply w-[35px] h-[35px] rounded-full bg-element hover:bg-primary/10 hover:scale-110 transition-all duration-300 p-2;
   }
   .link{
     @apply hover:text-primary bg-primary cursor-pointer transition-all duration-300;
@@ -50,8 +51,7 @@
 }
 @layer base{
   body{
-    @apply bg-background bg-center bg-cover font-ubuntu-font;
-    background-image: url("https://t4.ftcdn.net/jpg/03/07/07/33/240_F_307073324_GDaWWzce70NwV5e7gEnEJzA3oYtcUNna.jpg")
+    @apply bg-background  font-ubuntu-font;
         
   }
 }

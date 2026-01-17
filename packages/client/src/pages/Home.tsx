@@ -14,6 +14,7 @@ import BlogCard from "../../components/BlogCard";
 import { type TestimonialCardType } from "../../lib/types";
 import TestimonialCard from "../../components/TestimonialCard";
 import { Link } from "react-router-dom";
+import { Edit, Mail } from "lucide-react";
 
 function Home() {
   const [highlights, setHighlights] = useState<Highlights[] | null>(null);
@@ -126,39 +127,66 @@ function Home() {
 
   return (
     <>
+      <nav className="bg-[#0d0c1d] w-full h-[50px] flex px-2  items-center justify-end  nav">
+        <div className="mr-auto gap-2 flex items-center">
+          <h1 className="font-extrabold text-white bg-primary/15 rounded-lg px-3 py-1">
+            Prayer Mawere
+          </h1>
+          <ul className="list-none  gap-2 text-white text-sm hidden md:flex">
+            <Links to={{ hash: "about" }}>
+              <li className="hover:text-primary">about</li>
+            </Links>
+            <Links to="/blogs">
+              <li className="hover:text-primary">blogs</li>
+            </Links>
+            <Links to={{ hash: "contact" }}>
+              <li className="hover:text-primary">contact</li>
+            </Links>
+            <Links to={{ pathname: "http://localhost:5173", hash: "projects" }}>
+              <li className="hover:text-primary">projects</li>
+            </Links>
+          </ul>
+        </div>
+
+        <div className="flex gap-2 p-4">
+          <Link to={""}>
+            <Mail className="text-white hover:text-primary" />
+          </Link>
+          <Link to={""}>
+            <Edit className="text-white hover:text-primary" />
+          </Link>
+        </div>
+      </nav>
       <div className="  bg-center mt-0 bg-cover">
-        <div
-          className="  bg-center mt-0 bg-cover"
-          style={{
-            backgroundImage: `url(https://t4.ftcdn.net/jpg/03/07/07/33/240_F_307073324_GDaWWzce70NwV5e7gEnEJzA3oYtcUNna.jpg)`,
-          }}
-        >
+        <div className="  bg-center mt-0 bg-cover">
           <section className="w-full gap-3 flex flex-wrap justify-center md:block md:justify-start">
-            <div className="outer-circle w-65 h-65 md:w-[420px] md:h-[420px] bg-background rounded-full mt-10 ml-20 md:mt-20 md:ml-40">
-              <div
-                className="inner-circle border-l-2 border-primary  w-60 h-60 md:w-[350px] md:h-[350px] bg-white/10 rounded-full mt-[-25px] ml-[-65px] bg-cover bg-center"
-                style={{ backgroundImage: `url(${image})` }}
-              >
-                <div className="headinfo hidden md:block mt-100 md:mt-[60px] absolute font-arial md:ml-[30%]">
-                  {" "}
-                  <h1 className="text-8xl text-white justify-center font-primary-font items-center flex font-bold  ">
+            <div className="w-full  flex gap-3 flex-wrap md:flex-nowrap">
+              <div className="md:w-[40%] w-full flex justify-center ">
+                <div className="outer-circle w-[350px] h-[400px] bg-out-secondary rounded-lg mt-10 md:ml-20 md:mt-20 md:ml-40">
+                  <div
+                    className="inner-circle  w-[270px] h-[400px] bg-primary/20 rounded-lg mt-[-25px] md:ml-[-65px] bg-cover bg-center"
+                    style={{ backgroundImage: `url(../self.png)` }}
+                  ></div>
+                </div>
+              </div>
+
+              <div className="headinfo md:flex  md:mt-[60px]  justify-start md:px-20 p-2 py-10 font-arial w-full md:w-[60%] ">
+                {" "}
+                <div className="text-start gap-4 border-l border-primary pl-2 h-fit w-full">
+                  <h1 className="text-3xl md:text-5xl text-white font-primary-font items-center flex   ">
                     {name}
                   </h1>
-                  <h2 className="justify-center text-secondary items-center flex font-bold text-2xl">
+                  <h2 className=" text-white-faint items-center flex font-bold text-md">
                     {role}
                   </h2>
+                  <p className="text-sm mt-4 text-white">{bio}</p>
+                  <button className="px-3 py-1 bg-primary mt-2 text-sm text-white rounded-md">
+                    reach out
+                  </button>
                 </div>
               </div>
             </div>
-            <div className="headinfo  md:hidden  md:mt-[60px] relative font-arial md:ml-[30%] ">
-              {" "}
-              <h1 className="text-6xl text-white justify-center text-center font-primary-font items-center flex font-bold  ">
-                {name}
-              </h1>
-              <h2 className="justify-center text-secondary items-center flex font-bold text-xl">
-                {role}
-              </h2>
-            </div>
+
             <div className=" hidden md:block md:flex absolute text-right justify-end ml-[70%] gap-3 mt-5">
               {social.map((icon) => (
                 <a key={icon.url} href={icon.link}>
@@ -173,12 +201,6 @@ function Home() {
             className="mt-0 md:mt-20 flex flex-wrap md:flex-nowrap"
             id="about"
           >
-            <div className="skills p-5 w-full md:w-1/3  md:p-20 text-center space-y-3">
-              {skills.map((skill: any) => (
-                <Skill skill={skill} />
-              ))}
-            </div>
-
             <div className=" md:w-[70%] w-full p-2 md:p-25">
               <p className="text-element">{bio}</p>
               <br />
@@ -197,19 +219,6 @@ function Home() {
               <div className="flex  justify-center flex-wrap">
                 {blogData.map((blog: BlogCardType) => (
                   <BlogCard blogs={blog} />
-                ))}
-              </div>
-            </section>
-          )}
-
-          {testimonialData.length > 0 && (
-            <section className="mt-4 w-full m-0">
-              <h1 className="uppercase font-primary-font text-right  text-element">
-                Testimonials
-              </h1>
-              <div className="p-10  flex flex-wrap  gap-3 justify-center ">
-                {testimonialData.map((testimonialData: TestimonialCardType) => (
-                  <TestimonialCard testimonial={testimonialData} />
                 ))}
               </div>
             </section>
