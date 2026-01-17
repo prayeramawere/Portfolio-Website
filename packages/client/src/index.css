@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Jockey+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jockey+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import "tailwindcss";
+
+
+@theme inline{
+  --color-me: #3490dc;
+  --color-black-faint:rgba(57, 57, 59, 0.524);
+  --color-primary:#386CBB;
+  
+  --color-background:rgb(19, 17, 17);
+  --color-secondary:#EEECEC;
+  --color-out-secondary:#D9D9D9;
+  --color-white-faint:#B4B4B4;
+  --color-element:#FFFFFF;
+  --font-primary-font:"Jockey One", sans-serif;
+  --font-ubuntu-font:"Ubuntu", sans-serif;
+}
+
+
+
+@layer utilities{
+  .search-form{
+    @apply w-[85%] sm:w-[80%]  bg-white  shadow-sm shadow-primary  rounded-[80px] text-sm mt-8 px-5 py-3 flex flex-row items-center justify-center gap-5;
+  }
+  .search-btn{
+    @apply size-[20px]  rounded-full flex justify-center items-center text-primary;
+  }
+  .search-input{
+    @apply flex-1 font-bold placeholder:font-semibold placeholder:text-black w-full h-auto outline-none;
+  }
+  .no-scrollbar::-webkit-scrollbar{
+    display: none
+  }
+  .skill{
+    @apply py-1 px-3 h-[50px] rounded-lg font-semibold bg-element m-[4px] text-primary text-center inline-block ;
+  }
+  .navbar{
+    @apply p-[20px] w-fit rounded-2xl text-lg bg-primary font-primary-font sm:opacity-90 opacity-90 text-element fixed;
+  }
+  .social{
+    @apply w-[50px] h-[50px] rounded-full bg-element hover:scale-110 transition-all duration-300 p-2;
+  }
+  .link{
+    @apply hover:text-primary bg-primary cursor-pointer transition-all duration-300;
+  }
+  .category-card{
+    @apply px-4 py-3 bg-primary 
+  }
+}
+@layer base{
+  body{
+    @apply bg-background bg-center bg-cover font-ubuntu-font;
+    background-image: url("https://t4.ftcdn.net/jpg/03/07/07/33/240_F_307073324_GDaWWzce70NwV5e7gEnEJzA3oYtcUNna.jpg")
+        
+  }
+}
