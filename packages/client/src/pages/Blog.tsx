@@ -1,11 +1,11 @@
 import { Link, redirect, useParams } from "react-router-dom";
 import { useActionState, useEffect, useState, type FormEvent } from "react";
 import type { blog, comment } from "lib/types";
-import CommentCard from "../../components/CommentCard";
+import CommentCard from "../components/CommentCard";
 import { useNavigate } from "react-router-dom";
 
 function Blog() {
-  const navigate =  useNavigate();
+  const navigate = useNavigate();
   const [blogs, setBlogs] = useState<blog[]>([]);
   const [comments, setComments] = useState<comment[]>([]);
   const [open, setOpen] = useState<boolean>(false);
@@ -44,7 +44,7 @@ function Blog() {
     const response = await fetch("http://localhost:5000/blog");
     if (!response.ok) {
       console.log(
-        `error occured wie trying to get response: ${response.statusText}`
+        `error occured wie trying to get response: ${response.statusText}`,
       );
     }
 
@@ -55,7 +55,7 @@ function Blog() {
     const response = await fetch("http://localhost:5000/comment");
     if (!response.ok) {
       console.log(
-        `error occured wie trying to get response: ${response.statusText}`
+        `error occured wie trying to get response: ${response.statusText}`,
       );
     }
 
@@ -70,7 +70,7 @@ function Blog() {
   }, []);
 
   const currentBlogComments = comments.filter(
-    (comment) => comment.blogID == Number(id)
+    (comment) => comment.blogID == Number(id),
   );
 
   const blog = blogs.find((blog: blog) => blog.id == Number(id));

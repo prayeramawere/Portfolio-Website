@@ -6,8 +6,8 @@ import type {
   BlogRes,
   BlogCardType,
 } from "../../lib/types";
-import MultiBlogCard from "../../components/MultiBlogCardC";
-import SearchForm from "../../components/SearchForm";
+import MultiBlogCard from "../components/MultiBlogCardC";
+import SearchForm from "../components/SearchForm";
 import { Link, useSearchParams } from "react-router-dom";
 
 export default function BlogsEdit() {
@@ -19,7 +19,7 @@ export default function BlogsEdit() {
 
   const getAdmin = async () => {
     const response = await fetch(
-      "http://localhost:5000/secure/12ew/admin/public"
+      "http://localhost:5000/secure/12ew/admin/public",
     );
     if (!response.ok) {
       throw new Error(`problem while fetching admin ${response.status}`);
@@ -73,8 +73,8 @@ export default function BlogsEdit() {
                       blog.description,
                       blog.subtitle,
                     ].some((field) =>
-                      field?.toLowerCase().includes(query.toLowerCase())
-                    )
+                      field?.toLowerCase().includes(query.toLowerCase()),
+                    ),
                   )
                   .map((blog) => (
                     <MultiBlogCard blogs={blog} />

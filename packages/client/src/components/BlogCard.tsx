@@ -1,5 +1,5 @@
 import React from "react";
-import type { BlogCardType } from "../lib/types";
+import type { BlogCardType } from "../../lib/types";
 import { Link } from "react-router-dom";
 
 function BlogCard({ blogs }: { blogs: BlogCardType }) {

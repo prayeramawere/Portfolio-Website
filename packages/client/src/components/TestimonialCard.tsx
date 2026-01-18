@@ -1,5 +1,5 @@
 import React from "react";
-import { type TestimonialCardType } from "../lib/types";
+import { type TestimonialCardType } from "../../lib/types";
 
 function TestimonialCard({
   testimonial,

@@ -1,5 +1,5 @@
 import React from "react";
-import type { comment } from "../lib/types";
+import type { comment } from "../../lib/types";
 
 function CommentCard({ commentData }: { commentData: comment }) {
   return (

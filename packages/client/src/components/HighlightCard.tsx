@@ -1,5 +1,5 @@
 import React from "react";
-import type { BlogCardType, Highlights } from "../lib/types";
+import type { BlogCardType, Highlights } from "../../lib/types";
 
 function HighlightCard({ highlight }: { highlight: Highlights }) {
   let title,

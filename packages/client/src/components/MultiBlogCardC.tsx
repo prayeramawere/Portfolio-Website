@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import type { BlogCardType } from "../lib/types";
+import type { BlogCardType } from "../../lib/types";
 
 function MultiBlogCard({ blogs }: { blogs: BlogCardType }) {
   const { id, title, subtitle, description, image, link } = blogs;
