@@ -11,12 +11,12 @@ function About({ bio }: { bio: string }) {
         className={`mt-0 md:mt-20 text-white flex flex-wrap md:flex-nowrap `}
         id="about"
       >
-        <div className=" md:w-[70%] w-full p-2 md:p-25">
+        <div className=" md:w-[70%] w-full p-2 md:p-25 flex flex-col md:block">
           <h2
             ref={myRef}
-            className={`text-white text-2xl ${inView ? "animate-fadeInUp delay-100 animate-once duration-500 trasition-all" : ""}`}
+            className={`text-white font-bold text-2xl ${inView ? "animate-fadeInUp delay-100 animate-once duration-500 trasition-all" : ""}`}
           >
-            /About me
+            About me
           </h2>
           <p
             ref={myRef}
@@ -42,7 +42,7 @@ function About({ bio }: { bio: string }) {
             </ul>
           </p>
         </div>
-        <div className="flex justify-center items-center md:w-[30%] w-full">
+        <div className=" justify-center items-center md:w-[30%] w-full hidden md:flex">
           <ul className="flex text-8xl font-primary-font animate-pulse">
             <li>C</li>
             <li>R</li>

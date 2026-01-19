@@ -11,12 +11,13 @@ function BlogSection({ blogData }: { blogData: BlogCardType[] }) {
             Blogs & Articles
           </h1>
           <div className="flex ">
-            <div className="grid grid-cols-1 justify-center p-5 sm:w-[80%] items-center w-full">
+            <div className="flex justify-center items-center sm:w-[80%] w-full flex-col">
               {blogData.map((blog: BlogCardType) => (
                 <BlogCard blogs={blog} />
               ))}
             </div>
-            <div className="bg-out-secondary w-[20%] hidden md:block"></div>
+
+            <div className="bg-out-secondary w-[20%] hidden md:hidden"></div>
           </div>
         </section>
       )}

@@ -11,7 +11,7 @@ function BlogCard({ blogs }: { blogs: BlogCardType }) {
     <Link to={{ pathname: `/blog/${id}` }}>
       <div
         ref={ref}
-        className={` m-2 w-[80%] sm:w-[80%] flex flex-wrap sm:flex-nowrap mt-4 border-black-faint shadow-sm shadow-primary rounded-lg hover:bg-white-faint/10 hover:transition-all hover:duration-300 ${inView ? "animate-fadeInUp transition-all duration-500 delay-300" : ""} self-center`}
+        className={` mx-auto w-full sm:w-[80%] flex flex-wrap sm:flex-nowrap mt-4 border-b border-primary/10  hover:rounded-lg hover:bg-white-faint/10 hover:transition-all hover:duration-300 ${inView ? "animate-fadeInUp transition-all duration-500 delay-300" : ""} `}
       >
         <div className="w-full sm:w-[70%] p-2 sm:p-6 text-white  ">
           <div className="flex gap-5">

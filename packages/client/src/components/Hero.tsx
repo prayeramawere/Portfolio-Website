@@ -22,7 +22,7 @@ function Hero({ data }: { data: data }) {
 
         <div className="headinfo md:flex  md:mt-[60px]  justify-start md:px-20 p-2 py-10 font-arial w-full md:w-[60%] ">
           {" "}
-          <div className="text-start gap-4  pl-2 h-fit w-full">
+          <div className="text-start gap-4  pl-2 h-fit w-full flex flex-col md:block">
             <h1 className="text-3xl md:text-5xl text-white items-center flex ">
               {name}
             </h1>
