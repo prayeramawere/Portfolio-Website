@@ -52,6 +52,7 @@ const projects = [
 const blogs = [
   {
     id: 1,
+    date: "12/03/25",
     title: "Escaping tutorial Hell",
     subtitle: "make the best out of everything you can",
     description:
@@ -60,9 +61,12 @@ const blogs = [
       "https://i.pinimg.com/1200x/ff/a6/ac/ffa6ac1cf9a00c1bbcdcce3699158f41.jpg",
     link: "https://chatgpt.com/hju378494i48493n",
     category: "blogs and articles",
+    likes: 3,
+    views: 10,
   },
   {
     id: 2,
+    date: "12/03/25",
     title: "Escaping tutorial Hell",
     subtitle: "make the best out of everything you can",
     description:
@@ -72,9 +76,12 @@ const blogs = [
     link: "https://chatgpt.com/hju378494i48493n",
     comments: [],
     category: "blogs and articles",
+    likes: 5,
+    views: 15,
   },
   {
     id: 3,
+    date: "12/03/25",
     title: "Escaping man Hell",
     subtitle: "make the best out of everything you can",
     description:
@@ -84,6 +91,8 @@ const blogs = [
     link: "https://chatgpt.com/hju378494i48493n",
     comments: [],
     category: "blogs and articles",
+    likes: 2,
+    views: 8,
   },
 ];
 const comments = [

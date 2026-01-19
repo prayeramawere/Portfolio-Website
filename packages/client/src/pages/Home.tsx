@@ -127,16 +127,18 @@ function Home() {
 
   return (
     <>
-      <BaseNav />
-      <Hero data={[social, name || "", role || "", bio || ""]} />
-      <About bio={bio || ""} />
-      <center>
-        <hr className="w-[60%] text-primary" />
-      </center>
-      <BlogSection blogData={blogData} />
-      <PersonalProjects />
-      <Footer currentYear={currentYear} />
-      <FloatingNav />
+      <div className="scroll-smooth">
+        <BaseNav />
+        <Hero data={[social, name || "", role || "", bio || ""]} />
+        <About bio={bio || ""} />
+        <center>
+          <hr className="w-[60%] text-primary" />
+        </center>
+        <BlogSection blogData={blogData} />
+        <PersonalProjects />
+        <Footer currentYear={currentYear} />
+        <FloatingNav />
+      </div>
     </>
   );
 }

@@ -10,7 +10,7 @@ function Hero({ data }: { data: data }) {
   const [social, name, role, bio] = data;
   return (
     <section className="w-full gap-3 flex flex-wrap justify-center md:block md:justify-start">
-      <div className="w-full  flex gap-3 flex-wrap md:flex-nowrap">
+      <div className="w-full  flex gap-3 flex-wrap md:flex-nowrap  rounded-lg md:w-[90%]">
         <div className="md:w-[40%] w-full flex justify-center ">
           <div className="outer-circle w-[350px] h-[400px] bg-out-secondary rounded-lg mt-10 md:ml-20 md:mt-20 md:ml-40">
             <div
@@ -23,7 +23,7 @@ function Hero({ data }: { data: data }) {
         <div className="headinfo md:flex  md:mt-[60px]  justify-start md:px-20 p-2 py-10 font-arial w-full md:w-[60%] ">
           {" "}
           <div className="text-start gap-4  pl-2 h-fit w-full">
-            <h1 className="text-3xl md:text-5xl text-white items-center flex animate-">
+            <h1 className="text-3xl md:text-5xl text-white items-center flex ">
               {name}
             </h1>
             <h2 className=" text-white-faint items-center flex font-bold text-md">

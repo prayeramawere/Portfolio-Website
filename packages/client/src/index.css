@@ -8,15 +8,29 @@
   --color-black-faint:rgba(57, 57, 59, 0.524);
   --color-primary:#386CBB;
   
-  --color-background:#161b33;
+  --color-background:#0d0c1d;
   --color-secondary:#EEECEC;
-  --color-out-secondary:#0d0c1d;
+  --color-out-secondary:#161b33;
   --color-white-faint:#B4B4B4;
   --color-element:#FFFFFF;
   --font-primary-font:"Jockey One", sans-serif;
   --font-ubuntu-font:"Ubuntu", sans-serif;
 }
 
+@theme {
+  --animate-fadeInUp: fadeInUp 0.5s ease-in-out both ;
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
 
 
 @layer utilities{
