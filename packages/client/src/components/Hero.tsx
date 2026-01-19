@@ -14,7 +14,7 @@ function Hero({ data }: { data: data }) {
         <div className="md:w-[40%] w-full flex justify-center ">
           <div className="outer-circle w-[350px] h-[400px] bg-out-secondary rounded-lg mt-10 md:ml-20 md:mt-20 md:ml-40">
             <div
-              className="inner-circle  w-[270px] h-[400px] bg-primary rounded-lg mt-[-25px] md:ml-[-65px] bg-cover bg-center"
+              className="inner-circle  w-[270px] h-[400px] bg-out-secondary/25 rounded-lg mt-[-25px] md:ml-[-65px] bg-cover bg-center"
               style={{ backgroundImage: `url(../self.png)` }}
             ></div>
           </div>
@@ -23,7 +23,7 @@ function Hero({ data }: { data: data }) {
         <div className="headinfo md:flex  md:mt-[60px]  justify-start md:px-20 p-2 py-10 font-arial w-full md:w-[60%] ">
           {" "}
           <div className="text-start gap-4  pl-2 h-fit w-full">
-            <h1 className="text-3xl md:text-5xl text-white font-primary-font items-center flex   ">
+            <h1 className="text-3xl md:text-5xl text-white items-center flex ">
               {name}
             </h1>
             <h2 className=" text-white-faint items-center flex font-bold text-md">
