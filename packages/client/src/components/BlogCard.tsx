@@ -32,14 +32,7 @@ function BlogCard({ blogs }: { blogs: BlogCardType }) {
           <div className="mt-4 text-white-faint text-sm">
             {description.split("").slice(0, 100)}
 
-            <div className="flex justify-between mt-4">
-              <Link
-                to={{ pathname: `/blog/${id}` }}
-                className="text-blue-500   inline-block hover:shadow-sm px-2 py-1 rounded-md"
-              >
-                Read More
-              </Link>
-            </div>
+            <div className="flex justify-between mt-4"></div>
           </div>
         </div>
         <div className="w-full sm:w-[30%] flex justify-center items-center p-2 sm:p-10 ">
