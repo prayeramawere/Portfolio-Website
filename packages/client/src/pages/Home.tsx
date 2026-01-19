@@ -1,6 +1,8 @@
 import type {
   AdminRes,
   BlogRes,
+  comment,
+  CommentsRes,
   Highlights,
   TestimonialRes,
 } from "../../lib/types";
@@ -20,7 +22,7 @@ function Home() {
   const [highlights, setHighlights] = useState<Highlights[] | null>(null);
   const [admin, setAdmin] = useState<AdminRes | null>();
   const [projects, setProjects] = useState(null);
-  const [comments, setComments] = useState(null);
+  const [comments, setComments] = useState<CommentsRes | null>(null);
   const [blogs, setBlogs] = useState<BlogRes | null>(null);
   const [testimonials, setTestimonials] = useState<TestimonialRes>();
 
@@ -83,14 +85,16 @@ function Home() {
     loadData(links);
   }, []);
 
-  if (!admin || !testimonials || !blogs) {
+  if (!admin || !testimonials || !blogs || !comments) {
     return <div>Loading...</div>;
   }
 
   if (!admin?.success) {
     console.log(admin?.msg);
   }
+
   const { name, role, bio, story, skills = [], image } = admin.data;
+  const commentsData = comments.data as comment[];
 
   const testimonialData = testimonials.data;
   const blogData = blogs.data;
@@ -134,7 +138,7 @@ function Home() {
         <center>
           <hr className="w-[60%] text-primary" />
         </center>
-        <BlogSection blogData={blogData} />
+        <BlogSection blogData={blogData} comments={commentsData || []} />
         <PersonalProjects />
         <Footer currentYear={currentYear} />
         <FloatingNav />

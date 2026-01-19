@@ -53,6 +53,7 @@ const blogs = [
   {
     id: 1,
     date: "12/03/25",
+    category: "tech",
     title: "Escaping tutorial Hell",
     subtitle: "make the best out of everything you can",
     description:
@@ -60,13 +61,13 @@ const blogs = [
     image:
       "https://i.pinimg.com/1200x/ff/a6/ac/ffa6ac1cf9a00c1bbcdcce3699158f41.jpg",
     link: "https://chatgpt.com/hju378494i48493n",
-    category: "blogs and articles",
     likes: 3,
     views: 10,
   },
   {
     id: 2,
     date: "12/03/25",
+    category: "religion",
     title: "Escaping tutorial Hell",
     subtitle: "make the best out of everything you can",
     description:
@@ -74,8 +75,6 @@ const blogs = [
     image:
       "https://blogs.fuqua.duke.edu/duke-mba/wp-content/uploads/sites/2/2019/11/25-random-things-blog.jpg",
     link: "https://chatgpt.com/hju378494i48493n",
-    comments: [],
-    category: "blogs and articles",
     likes: 5,
     views: 15,
   },
@@ -83,14 +82,13 @@ const blogs = [
     id: 3,
     date: "12/03/25",
     title: "Escaping man Hell",
+    category: "personal development",
     subtitle: "make the best out of everything you can",
     description:
       "CDN stands for Content Delivery Network or Content Distribution Network, which is a network of geographically distributed servers that work together to deliver web content faster. CDNs improve website performance by caching copies of a website's files (like images, videos, and code) on servers located closer to end users, reducing the physical distance data needs to travel and minimizing latenc",
     image:
       "https://i.pinimg.com/736x/d7/e0/a9/d7e0a982c4d82f1d8e7bceb16fa7cd76.jpg",
     link: "https://chatgpt.com/hju378494i48493n",
-    comments: [],
-    category: "blogs and articles",
     likes: 2,
     views: 8,
   },

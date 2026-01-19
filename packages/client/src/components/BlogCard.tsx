@@ -1,10 +1,21 @@
 import React from "react";
-import type { BlogCardType } from "../../lib/types";
+import type { BlogCardType, comment } from "../../lib/types";
 import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+import { Eye, Heart, MessageCircleIcon } from "lucide-react";
 
-function BlogCard({ blogs }: { blogs: BlogCardType }) {
-  const { title, subtitle, description, image, link, id } = blogs;
+function BlogCard({
+  blogs,
+  comments,
+}: {
+  blogs: BlogCardType;
+  comments: comment[];
+}) {
+  const { title, subtitle, description, image, link, id, likes, views, date } =
+    blogs;
+  const currentBlogComments = comments.filter(
+    (comment) => comment.blogID == Number(id),
+  );
   const { ref, inView } = useInView();
 
   return (
@@ -33,6 +44,22 @@ function BlogCard({ blogs }: { blogs: BlogCardType }) {
             {description.split("").slice(0, 100)}
 
             <div className="flex justify-between mt-4"></div>
+          </div>
+          <div className="w-full h-10 flex justify-end px-4 items-center gap-2 text-sm text-white-faint ">
+            <span className="mr-auto">{date}</span>
+            <span className="flex gap-1 ">
+              {likes}
+              <Heart className="text-pink-600 size-5" />
+            </span>
+
+            <span className="flex gap-1">
+              {currentBlogComments.length}
+              <MessageCircleIcon className="size-5" />
+            </span>
+            <span className="flex gap-1">
+              {views}
+              <Eye className="text-primary size-5 " />
+            </span>
           </div>
         </div>
         <div className="w-full sm:w-[30%] flex justify-center items-center p-2 sm:p-10 ">

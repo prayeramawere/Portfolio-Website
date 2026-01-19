@@ -40,6 +40,9 @@ export type BlogCardType = {
   image: string;
   link:string
   category?:string
+  date:string
+  likes:number
+  views:number
 };
  export type PrivateAdminData = {
     id:string
@@ -57,6 +60,11 @@ export type BlogCardType = {
     success: boolean;
     msg?: string;
     data: AdminData;
+  };
+  export type CommentsRes = {
+    success: boolean;
+    msg?: string;
+    data: comment[];
   };
   export type BlogRes = {
     success: boolean;

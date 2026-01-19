@@ -1,8 +1,20 @@
-import type { BlogCardType } from "lib/types";
+import type { BlogCardType, comment } from "lib/types";
 import React from "react";
 import BlogCard from "./BlogCard";
+import BlogCategory from "./BlogCategory";
 
-function BlogSection({ blogData }: { blogData: BlogCardType[] }) {
+function BlogSection({
+  blogData,
+  comments,
+}: {
+  blogData: BlogCardType[];
+  comments: comment[];
+}) {
+  const categories = Array.from(
+    new Set(blogData.map((blog: BlogCardType) => blog.category)),
+  ) as string[];
+
+  console.log(categories);
   return (
     <>
       {blogData.length > 0 && (
@@ -13,11 +25,18 @@ function BlogSection({ blogData }: { blogData: BlogCardType[] }) {
           <div className="flex ">
             <div className="flex justify-center items-center sm:w-[80%] w-full flex-col">
               {blogData.map((blog: BlogCardType) => (
-                <BlogCard blogs={blog} />
+                <BlogCard blogs={blog} comments={comments} />
               ))}
             </div>
 
-            <div className="bg-out-secondary w-[20%] hidden md:hidden"></div>
+            <div className=" w-[20%]  md:flex hidden">
+              <div className="gap-4 p-4">
+                {categories.map((category: string, index: number) => (
+                  <BlogCategory category={category} key={index} />
+                ))}
+              </div>
+              <h2>{/* Advertisement Space <br /> Your Ad Here */}</h2>
+            </div>
           </div>
         </section>
       )}
