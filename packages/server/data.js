@@ -161,8 +161,7 @@ const publicAdmin = {
   name: "Prayer Mawere",
   role: "Tech enthusiast",
   bio: "Tech Enthusiast | Turning ideas into reality | Web Developer I’m a passionate tech enthusiast with a deep curiosity for how technology shapes the world around us. From exploring the latest innovations in AI and software development to experimenting with new tools and frameworks, I love turning ideas into functional, creative solutions.",
-  story:
-    "a passionate tech enthusiast with a deep curiosity for howtechnology shapes the world around us. From exploring the latestinnovations in AI and software development to experimenting with newtools and frameworks, I love turning ideas into functional, creativesolutions.",
+  story: "I`m a tech enthuasiast writing about tech and the world around us",
   skills: ["HTML", "CSS", "javascript", "Nodejs", "Express", "TailwindCSS"],
   image: "https://anesumawere-portfolio.space/me.png",
   category: "about me",

@@ -35,13 +35,13 @@
 
 @layer utilities{
   .search-form{
-    @apply w-[85%] sm:w-[80%]  bg-white  shadow-sm shadow-primary  rounded-[80px] text-sm mt-8 px-5 py-3 flex flex-row items-center justify-center gap-5;
+    @apply w-[85%] sm:w-[400px]  bg-out-secondary text-white  shadow-sm shadow-primary  rounded-[80px] text-sm mt-8 px-5 py-3 flex flex-row items-center justify-center gap-5;
   }
   .search-btn{
     @apply size-[20px]  rounded-full flex justify-center items-center text-primary;
   }
   .search-input{
-    @apply flex-1 font-bold placeholder:font-semibold placeholder:text-black w-full h-auto outline-none;
+    @apply flex-1 placeholder:font-semibold placeholder:text-white w-full h-auto outline-none;
   }
   .no-scrollbar::-webkit-scrollbar{
     display: none

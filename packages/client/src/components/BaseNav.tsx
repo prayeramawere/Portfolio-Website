@@ -27,6 +27,22 @@ function BaseNav() {
       </div>
 
       <div className="flex gap-2 p-4">
+        <div className="w-[300px] rounded-2xl bg-primary/20 h-fit">
+          <form action=" " className="flex">
+            <input
+              type="email"
+              name="email"
+              placeholder="enter your email"
+              className="px-2 text-white search-input outline-none placeholder:font-light! placeholder:text-sm!"
+            />
+            <button
+              className="px-3 py-1 bg-primary rounded-3xl text-white text-sm"
+              type="submit"
+            >
+              subcribe
+            </button>
+          </form>
+        </div>
         <Links to={""}>
           <Mail className="text-white hover:text-primary" />
         </Links>
