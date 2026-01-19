@@ -8,7 +8,7 @@ function About({ bio }: { bio: string }) {
     >
       <div className=" md:w-[70%] w-full p-2 md:p-25">
         <h2 className="text-white text-2xl">/About me</h2>
-        <p className="text-element mt-2">{bio}</p>
+        <p className="text-element mt-2 animate-out">{bio}</p>
         <br />
         <p>
           Here are some of the technologies im focusing on:
@@ -24,7 +24,16 @@ function About({ bio }: { bio: string }) {
           </ul>
         </p>
       </div>
-      <div></div>
+      <div className="flex justify-center items-center w-[30%]">
+        <ul className="flex text-8xl font-primary-font animate-pulse">
+          <li>C</li>
+          <li>R</li>
+          <li>E</li>
+          <li>A</li>
+          <li>T</li>
+          <li>E</li>
+        </ul>
+      </div>
     </section>
   );
 }
