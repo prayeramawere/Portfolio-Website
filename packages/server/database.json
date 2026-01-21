@@ -3,7 +3,7 @@
         "driver":"pg",
         "host":"localhost",
         "user":"postgres",
-        "password":"your_password",
+        "password":"yourpass#1234",
         "database":"portfolioamo"
     }
 }
