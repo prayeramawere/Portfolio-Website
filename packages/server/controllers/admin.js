@@ -1,5 +1,6 @@
 const { get } = require("mongoose");
 const { admin, publicAdmin } = require("../data.js");
+const { addAdmin, updateAdminDB } = require("../config/db.js");
 
 const getAdmin = (req, res) => {
   res.status(200).json({ success: true, data: admin });
