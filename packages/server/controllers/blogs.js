@@ -1,12 +1,11 @@
-const { blogs } = require("../data.js");
-const express = require("express");
-const {
+import express from "express";
+import {
   createBlogDB,
   updateBlogDB,
   getBlogsDB,
   getBlogsById,
   deleteBlogDB,
-} = require("../config/db.js");
+} from "../config/db.js";
 
 const formartDate = Intl.DateTimeFormat("en-US", {
   year: "numeric",
@@ -14,10 +13,10 @@ const formartDate = Intl.DateTimeFormat("en-US", {
   day: "2-digit",
 });
 
-const getBlog = (req, res) => {
+const getBlog = async (req, res) => {
   try {
-    const response = getBlogsDB();
-    res.status(200).json({ success: true, data: blogs });
+    const response = await getBlogsDB();
+    res.status(200).json({ success: true, data: response });
   } catch (error) {
     console.log("an error occured while fetching blogs:", error);
   }
@@ -78,18 +77,16 @@ const updateBlog = async (req, res) => {
   }
 };
 
-const deleteBlog = (req, res) => {
+const deleteBlog = async (req, res) => {
   const { id } = req.params;
   try {
-    const response = deleteBlogDB(Number(id));
+    const response = await deleteBlogDB(Number(id));
     res.status(200).json({ success: true, data: response });
   } catch (error) {
-    res
-      .status(200)
-      .json({
-        success: false,
-        msg: `an error occured while deleting blog: ${error}`,
-      });
+    res.status(200).json({
+      success: false,
+      msg: `an error occured while deleting blog: ${error}`,
+    });
   }
 };
-module.exports = { getBlog, postBlog, updateBlog, deleteBlog };
+export default { getBlog, postBlog, updateBlog, deleteBlog };

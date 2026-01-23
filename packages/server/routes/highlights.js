@@ -1,6 +1,6 @@
-const express = require("express");
-const router = express.Router();
-const { blogs, testimonials, projects, publicAdmin } = require("../data.js");
+import { Router } from "express";
+const router = Router();
+import { blogs, testimonials, projects, publicAdmin } from "../data.js";
 
 const getRanodomComponent = (data) => {
   if (data) {
@@ -31,4 +31,4 @@ router.get("/", async (req, res) => {
   res.status(200).json({ success: true, data: highlights });
 });
 
-module.exports = router;
+export default router;

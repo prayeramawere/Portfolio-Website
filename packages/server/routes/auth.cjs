@@ -1,9 +1,9 @@
-const express = require("express");
-const jwt = require("jsonwebtoken");
-const router = express.Router();
-const { admin } = require("../data.js");
+const { Router } = require("express");
+const { sign } = require("jsonwebtoken");
 
-router.post("/", (req, res) => {
+const router = Router();
+
+router.post("/", async (req, res) => {
   try {
     console.log("BODY:", req.body); // 👈 see incoming data
 
@@ -17,13 +17,13 @@ router.post("/", (req, res) => {
     }
 
     if (
-      unique_code1 === admin.unique_code1 &&
-      unique_code2 === admin.unique_code2
+      unique_code1 === process.env.UNIQUE_CODE1 &&
+      unique_code2 === process.env.UNIQUE_CODE2
     ) {
-      const token = jwt.sign(
+      const token = sign(
         { unique_code1, unique_code2 },
         process.env.SECRET_KEY,
-        { expiresIn: "30d" }
+        { expiresIn: "30d" },
       );
 
       return res.status(200).json({ success: true, token });

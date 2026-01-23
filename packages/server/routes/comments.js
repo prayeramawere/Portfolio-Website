@@ -1,11 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const {
+import { Router } from "express";
+const router = Router();
+import {
   getComments,
   postComments,
   deleteComments,
-} = require("../controllers/comments.js");
-const authenticationMiddleware = require("../middleware/auth.js");
+} from "../controllers/comments.js";
+import authenticationMiddleware from "../middleware/auth.cjs";
 
 router.get("/", getComments);
 
@@ -13,4 +13,4 @@ router.post("/", postComments);
 
 router.delete("/:id", authenticationMiddleware, deleteComments);
 
-module.exports = router;
+export default router;

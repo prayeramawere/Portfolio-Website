@@ -1,9 +1,8 @@
-const { comments } = require("../data.js");
-const {
+import {
   createCommentDB,
   getCommentsDB,
   deleteCommentDB,
-} = require("../config/db.js");
+} from "../config/db.js";
 
 const formartDate = Intl.DateTimeFormat("en-US", {
   year: "numeric",
@@ -32,9 +31,11 @@ const postComments = async (req, res) => {
       const response = await createCommentDB(commentData);
 
       if (response.status == "SUCCESS") {
-        res.status(200).json({ success: true, data: comments });
+        const data = getCommentsDB();
+        res.status(200).json({ success: true, data: data });
       } else {
-        res.status(200).json({ success: true, data: comments });
+        const data = getCommentsDB();
+        res.status(200).json({ success: true, data: data });
       }
     } catch (error) {
       res.status(400).json({ success: false, msg: error });
@@ -57,4 +58,4 @@ const deleteComments = (req, res) => {
   }
 };
 
-module.exports = { getComments, postComments, deleteComments };
+export { getComments, postComments, deleteComments };

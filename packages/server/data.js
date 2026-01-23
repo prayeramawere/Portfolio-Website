@@ -215,7 +215,7 @@ secretCodes = [
   generateSecretCode(),
 ];
 
-module.exports = {
+export default {
   blogs,
   admin,
   comments,

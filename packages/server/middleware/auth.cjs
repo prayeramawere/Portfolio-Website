@@ -1,5 +1,4 @@
-const express = require("express");
-const jwt = require("jsonwebtoken");
+const { verify } = require("jsonwebtoken");
 
 const authenticationMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -11,9 +10,9 @@ const authenticationMiddleware = async (req, res, next) => {
 
   const token = authHeader.split(" ")[1];
   try {
-    const { unique_code1, unique_code2 } = jwt.verify(
+    const { unique_code1, unique_code2 } = verify(
       token,
-      process.env.SECRET_KEY
+      process.env.SECRET_KEY,
     );
     console.log(process.env.SECRET_KEY);
     req.user = { unique_code1, unique_code2 };

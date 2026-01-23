@@ -1,13 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const authenticationMiddleware = require("../middleware/auth.js");
+import { Router } from "express";
+const router = Router();
+import pkg from "../middleware/auth.cjs";
+const authenticationMiddleware = pkg;
 
-const {
-  getBlog,
-  postBlog,
-  updateBlog,
-  deleteBlog,
-} = require("../controllers/blogs.js");
+import pkg2 from "../controllers/blogs.js";
+const { getBlog, postBlog, updateBlog, deleteBlog } = pkg2;
 
 router.get("/", getBlog);
 
@@ -16,4 +13,4 @@ router.post("/", authenticationMiddleware, postBlog);
 router.put("/:id", authenticationMiddleware, updateBlog);
 
 router.delete("/:id", authenticationMiddleware, deleteBlog);
-module.exports = router;
+export default router;

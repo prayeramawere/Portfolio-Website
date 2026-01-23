@@ -10,5 +10,5 @@ CREATE TABLE Blogs (
     _image TEXT,
     link TEXT,
     likes INT,
-    views INT,
+    views INT
 )

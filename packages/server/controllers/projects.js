@@ -1,17 +1,16 @@
-const { projects } = require("../data.js");
-const express = require("express");
-const {
+import express from "express";
+import {
   createProjectDB,
   updateProjectDB,
   getProjectsDB,
   getProjectById,
   deleteProjectDB,
-} = require("../config/db.js");
+} from "../config/db.js";
 
 const getProjects = (req, res) => {
   try {
     const response = getProjectsDB();
-    res.status(200).json({ success: true, data: projects });
+    res.status(200).json({ success: true, data: response });
   } catch (error) {
     console.log("an error occured while fetching projects: ", error);
   }
@@ -106,4 +105,4 @@ const deleteProject = (req, res) => {
     });
   }
 };
-module.exports = { getProjects, createProject, updateProject, deleteProject };
+export { getProjects, createProject, updateProject, deleteProject };

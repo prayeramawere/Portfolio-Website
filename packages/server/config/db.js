@@ -1,5 +1,5 @@
-const { Client } = require("pg");
-const {
+import { Client } from "pg";
+import {
   create_admin_query,
   update_admin_query,
   create_blog_query,
@@ -8,23 +8,23 @@ const {
   update_comment_query,
   create_project_query,
   update_project_query,
-  get_project_byId,
   get_blog_byId,
   get_comment_byId,
+  get_project_byId,
   delete_blog_query,
   delete_comment_query,
   delete_project_query,
   get_admin_query,
-  get_comments_query,
   get_blogs_query,
+  get_comments_query,
   get_projects_query,
-} = require("./queries.js");
+} from "./queries.js";
 
 const client = new Client({
   host: "localhost",
   user: "postgres",
   database: "portfolioamo",
-  password: "your_pass#1234",
+  password: "Mawere#1234",
 });
 
 await client.connect();
@@ -39,11 +39,17 @@ const getAdminDB = async () => {
   }
 };
 const addAdmin = async () => {
-  const adminData = ["Prayer Mawere", "Tech Enthusiast", ""];
+  const adminData = [
+    "Prayer Mawere",
+    "Tech Enthusiast",
+    "A tech enthusiast and web developer who loves turning ideas into software, diving deep into modern tech, and leveling up through code and gaming alike.",
+    "I`m a tech enthuasiast writing about tech and the world around us",
+    "https://avatars.githubusercontent.com/u/248066150?v=4",
+    "x31,.wk3..s",
+    "x31,.wk3..s",
+  ];
 
-  let response = {};
-
-  client.query(create_admin_query, adminData, (err, result) => {
+  let response = client.query(create_admin_query, adminData, (err, result) => {
     err
       ? (response = {
           status: "Error",
@@ -76,8 +82,8 @@ const updateAdminDB = async (adminData) => {
 const getBlogsDB = async () => {
   try {
     const response = await client.query(get_blogs_query);
-    const adminData = response.rows;
-    return adminData;
+    const blogData = response.rows;
+    return blogData;
   } catch (error) {
     console.log("an error occured", error);
   }
@@ -139,8 +145,8 @@ const deleteBlogDB = async (id) => {
 const getCommentsDB = async () => {
   try {
     const response = await client.query(get_comments_query);
-    const adminData = response.rows;
-    return adminData;
+    const commentData = response.rows;
+    return commentData;
   } catch (error) {
     console.log("an error occured", error);
   }
@@ -202,8 +208,8 @@ const deleteCommentDB = async (id) => {
 const getProjectsDB = async () => {
   try {
     const response = await client.query(get_projects_query);
-    const adminData = response.rows;
-    return adminData;
+    const projectData = response.rows;
+    return projectData;
   } catch (error) {
     console.log("an error occured", error);
   }
@@ -261,7 +267,7 @@ const deleteProjectDB = async (id) => {
   return response;
 };
 
-module.exports = {
+export {
   getAdminDB,
   getCommentsDB,
   getBlogsDB,

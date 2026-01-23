@@ -1,6 +1,6 @@
 /* Replace with your SQL commands */
 
-CREATE TABLE admin (
+CREATE TABLE Admin (
     id BIGSERIAL NOT NULL PRIMARY KEY,
     username VARCHAR(700) NOT NULL,
     _role VARCHAR(700) NOT NULL,
