@@ -1,4 +1,9 @@
 const { comments } = require("../data.js");
+const {
+  createCommentDB,
+  getCommentsDB,
+  deleteCommentDB,
+} = require("../config/db.js");
 
 const formartDate = Intl.DateTimeFormat("en-US", {
   year: "numeric",
@@ -7,27 +12,30 @@ const formartDate = Intl.DateTimeFormat("en-US", {
 });
 
 const getComments = (req, res) => {
-  res.status(200).json({ success: true, data: comments });
+  try {
+    const response = getCommentsDB();
+    res.status(200).json({ success: true, data: response });
+  } catch (error) {
+    console.log("an error occured while fetching comments: ", error);
+  }
 };
-const postComments = (req, res) => {
+const postComments = async (req, res) => {
   const { blogID, comment, author } = req.body;
-  const date = formartDate.format(new Date().getTime());
+  const _created_at = formartDate.format(new Date().getTime());
   const likes = 0;
-  let id = 0;
-  console.log(blogID, date, comment, author, likes);
-  if (blogID || date || comment || author || likes) {
-    try {
-      const userComment = {
-        blogID,
-        id: ++id,
-        date,
-        comment,
-        author,
-        likes,
-      };
 
-      comments.push(userComment);
-      res.status(200).json({ success: true, data: comments });
+  const commentData = [blogID, _created_at, comment, author, likes];
+
+  console.log(blogID, date, comment, author, likes);
+  if (blogID && comment && author) {
+    try {
+      const response = await createCommentDB(commentData);
+
+      if (response.status == "SUCCESS") {
+        res.status(200).json({ success: true, data: comments });
+      } else {
+        res.status(200).json({ success: true, data: comments });
+      }
     } catch (error) {
       res.status(400).json({ success: false, msg: error });
     }
@@ -37,7 +45,16 @@ const postComments = (req, res) => {
 };
 
 const deleteComments = (req, res) => {
-  //delete comment
+  const { id } = req.params;
+  try {
+    const response = deleteCommentDB(Number(id));
+    res.status(200).json({ success: true, data: response });
+  } catch (error) {
+    res.status(200).json({
+      success: false,
+      msg: `an error occured while deleting comment: ${error}`,
+    });
+  }
 };
 
 module.exports = { getComments, postComments, deleteComments };

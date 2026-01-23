@@ -1,22 +1,50 @@
 const { blogs } = require("../data.js");
 const express = require("express");
+const {
+  createBlogDB,
+  updateBlogDB,
+  getBlogsDB,
+  getBlogsById,
+  deleteBlogDB,
+} = require("../config/db.js");
+
+const formartDate = Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
 
 const getBlog = (req, res) => {
-  res.status(200).json({ success: true, data: blogs });
+  try {
+    const response = getBlogsDB();
+    res.status(200).json({ success: true, data: blogs });
+  } catch (error) {
+    console.log("an error occured while fetching blogs:", error);
+  }
 };
-const postBlog = (req, res) => {
-  const { title, subtitle, description, image, link } = req.body;
+const postBlog = async (req, res) => {
+  const { category, title, subtitle, _message, _image, link } = req.body;
 
-  if (title & subtitle & description & image & link) {
+  const blogData = [
+    formartDate(new Date.getTime()),
+    category,
+    title,
+    subtitle,
+    _message,
+    _image,
+    link,
+    0,
+    0,
+  ];
+
+  if (category && title && subtitle && _message && _image && link) {
     try {
-      blogs.push({
-        title,
-        subtitle,
-        description,
-        image,
-        link,
-      });
-      res.status(200).json({ success: true, data: blogs });
+      const response = await createBlogDB(blogData);
+      if (response.status == "SUCCESS") {
+        res.status(200).json({ success: true, data: response });
+      } else {
+        res.status(400).json({ success: false, data: response });
+      }
     } catch (error) {
       res.status(400).json({ success: false, msg: error });
     }
@@ -24,35 +52,44 @@ const postBlog = (req, res) => {
     res.status(400).json({ success: false, msg: "Dude you forgot something" });
   }
 };
-const updateBlog = (req, res) => {
+const updateBlog = async (req, res) => {
   const { id } = req.params;
-  const { title, subtitle, description, link } = req.body;
-  const blog = blogs.find((blog) => blog.id == Number(id));
+  const { category, title, subtitle, _message, _image, link } = req.body;
+  const blogData = [category, title, subtitle, _message, _image, link];
+  const blog = getBlogsById(Number(id));
 
   if (!blog) {
-    res.status(400).json({ success: false, msg: "blog not found" });
+    return res.status(400).json({ success: false, msg: "blog not found" });
   }
 
-  if (title || subtitle || description || image || link) {
-    const Newblogs = blogs.map((blog) => {
-      if (blog.id === Number(id)) {
-        title ? (blog.title = title) : (blog.title = blog.title);
-        subtitle ? (blog.subtitle = subtitle) : (blog.subtitle = blog.subtitle);
-        description
-          ? (blog.description = description)
-          : (blog.description = blog.description);
-        image ? (blog.image = image) : (blog.image = blog.image);
-        link ? (blog.link = link) : (blog.link = blog.link);
+  if (category && title && subtitle && _message && _image && link) {
+    try {
+      const response = await updateBlogDB(blogData, id);
+      if (response.status == "SUCCESS") {
+        return res.status(200).json({ success: true, data: Newblogs });
+      } else {
+        return res.status(400).json({ success: false, msg: response });
       }
-      return blogs;
-    });
-    res.status(200).json({ success: true, data: Newblogs });
+    } catch (error) {
+      return res.status(400).json({ success: false, msg: error });
+    }
+  } else {
+    res.status(400).json({ success: false, msg: "Dude you forgot something" });
   }
 };
 
 const deleteBlog = (req, res) => {
   const { id } = req.params;
-
-  res.status(200).json({ success: true, msg: `deleted user with id ${id}` });
+  try {
+    const response = deleteBlogDB(Number(id));
+    res.status(200).json({ success: true, data: response });
+  } catch (error) {
+    res
+      .status(200)
+      .json({
+        success: false,
+        msg: `an error occured while deleting blog: ${error}`,
+      });
+  }
 };
 module.exports = { getBlog, postBlog, updateBlog, deleteBlog };

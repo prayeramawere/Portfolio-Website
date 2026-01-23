@@ -7,8 +7,8 @@ CREATE TABLE Blogs (
     title VARCHAR(700) NOT NULL,
     subtitle VARCHAR(700) NOT NULL,
     _message TEXT NOT NULL,
-    _image IMAGE,
-    link URL,
+    _image TEXT,
+    link TEXT,
     likes INT,
     views INT,
 )

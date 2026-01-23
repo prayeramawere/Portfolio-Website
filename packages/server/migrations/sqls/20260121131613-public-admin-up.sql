@@ -6,5 +6,5 @@ CREATE TABLE PublicAdmin (
     _role VARCHAR(700) NOT NULL,
     bio VARCHAR(1000) NOT NULL,
     story VARCHAR(1000) NOT NULL,
-    _image IMAGE NOT NULL,
+    _image TEXT NOT NULL,
 )

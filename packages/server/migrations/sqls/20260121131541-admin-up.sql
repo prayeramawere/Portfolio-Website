@@ -6,7 +6,7 @@ CREATE TABLE admin (
     _role VARCHAR(700) NOT NULL,
     bio VARCHAR(1000) NOT NULL,
     story VARCHAR(1000) NOT NULL,
-    _image IMAGE NOT NULL,
+    _image TEXT NOT NULL,
     unique_code1 VARCHAR(24),
-    unique_code1 VARCHAR(24)
+    unique_code2 VARCHAR(24)
 )
