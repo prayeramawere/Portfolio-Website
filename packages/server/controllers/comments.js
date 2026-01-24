@@ -10,9 +10,10 @@ const formartDate = Intl.DateTimeFormat("en-US", {
   day: "2-digit",
 });
 
-const getComments = (req, res) => {
+const getComments = async (req, res) => {
   try {
-    const response = getCommentsDB();
+    const response = await getCommentsDB();
+    console.log(response);
     res.status(200).json({ success: true, data: response });
   } catch (error) {
     console.log("an error occured while fetching comments: ", error);
@@ -25,7 +26,7 @@ const postComments = async (req, res) => {
 
   const commentData = [blogID, _created_at, comment, author, likes];
 
-  console.log(blogID, date, comment, author, likes);
+  console.log(blogID, _created_at, comment, author, likes);
   if (blogID && comment && author) {
     try {
       const response = await createCommentDB(commentData);
@@ -35,7 +36,7 @@ const postComments = async (req, res) => {
         res.status(200).json({ success: true, data: data });
       } else {
         const data = getCommentsDB();
-        res.status(200).json({ success: true, data: data });
+        res.status(200).json({ success: false, data: data });
       }
     } catch (error) {
       res.status(400).json({ success: false, msg: error });

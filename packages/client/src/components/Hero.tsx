@@ -7,7 +7,7 @@ type social = {
 type data = [social: social[], name: string, role: string, bio: string];
 
 function Hero({ data }: { data: data }) {
-  const [social, name, role, bio] = data;
+  const [social, name, _role, bio] = data;
   return (
     <section className="w-full gap-3 flex flex-wrap justify-center md:block md:justify-start">
       <div className="w-full  flex gap-3 flex-wrap md:flex-nowrap  rounded-lg md:w-[90%]">
@@ -27,7 +27,7 @@ function Hero({ data }: { data: data }) {
               {name}
             </h1>
             <h2 className=" text-white-faint items-center flex font-bold text-md">
-              {role}
+              {_role}
             </h2>
             <p className="text-sm mt-4 text-white">{bio}</p>
             <button className="px-4 py-2 border-primary bg-primary shadow-sm  hover:border-2 mt-2 text-sm text-white transition-all duration-200 hover:bg-blue-400/15 hover:px-4 hover:py-2 cursor-pointer rounded-md">

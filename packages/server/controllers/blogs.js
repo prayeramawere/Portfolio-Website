@@ -5,6 +5,7 @@ import {
   getBlogsDB,
   getBlogsById,
   deleteBlogDB,
+  updateViewsDB,
 } from "../config/db.js";
 
 const formartDate = Intl.DateTimeFormat("en-US", {
@@ -23,9 +24,12 @@ const getBlog = async (req, res) => {
 };
 const postBlog = async (req, res) => {
   const { category, title, subtitle, _message, _image, link } = req.body;
+  console.log(req.body);
+
+  console.log("post envoked");
 
   const blogData = [
-    formartDate(new Date.getTime()),
+    formartDate.format(new Date().getTime()),
     category,
     title,
     subtitle,
@@ -49,6 +53,18 @@ const postBlog = async (req, res) => {
     }
   } else {
     res.status(400).json({ success: false, msg: "Dude you forgot something" });
+  }
+};
+const updateViews = async (req, res) => {
+  const { views, id } = req.body;
+  console.log("invoked");
+
+  console.log("the info is", req.body);
+  try {
+    const response = await updateViewsDB(views, id);
+    res.status(200).json({ success: true, data: response });
+  } catch (error) {
+    console.log("an error occured while updating blogs views:", error);
   }
 };
 const updateBlog = async (req, res) => {
@@ -89,4 +105,4 @@ const deleteBlog = async (req, res) => {
     });
   }
 };
-export default { getBlog, postBlog, updateBlog, deleteBlog };
+export default { getBlog, postBlog, updateBlog, deleteBlog, updateViews };

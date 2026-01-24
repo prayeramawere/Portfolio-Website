@@ -18,7 +18,7 @@ function App() {
         <Route path="/admin/blogs/edit" element={<BlogsEdit />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/admin/user/edit" element={<AdminEdit />} />
-        <Route path="/admin/user/edit/:id" element={<BlogEdit />} />
+        <Route path="/admin/user/edit/blog" element={<BlogEdit />} />
         <Route path="/blog/:id" element={<Blog />}></Route>
         <Route path="/feedback/new/:token" element={<FeedBack />}></Route>
       </Routes>

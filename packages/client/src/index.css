@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jockey+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Jockey+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 
 @theme inline{
@@ -61,6 +62,9 @@
   }
   .category-card{
     @apply px-4 py-3 bg-primary 
+  }
+  .input{
+    @apply w-[80%] p-5 bg-primary/10 rounded-lg text-white placeholder:text-white placeholder:text-sm mt-2 cursor-pointer transition-all duration-300;
   }
   
 }

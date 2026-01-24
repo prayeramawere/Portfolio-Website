@@ -18,6 +18,7 @@ import {
   get_blogs_query,
   get_comments_query,
   get_projects_query,
+  update_blogsV_query,
 } from "./queries.js";
 
 const client = new Client({
@@ -125,6 +126,25 @@ const getBlogsById = async (id) => {
   return response.rows;
 };
 
+const updateViewsDB = async (views, id) => {
+  let response = client.query(
+    update_blogsV_query,
+    [views, id],
+    (err, result) => {
+      err
+        ? (response = {
+            status: "ERROR",
+            msg: err,
+          })
+        : (response = {
+            status: "SUCCESS",
+            msg: "updated views successfuly",
+          });
+    },
+  );
+  return response;
+};
+
 const deleteBlogDB = async (id) => {
   let response = {};
   client.query(delete_blog_query, [id], (err, result) => {
@@ -151,6 +171,7 @@ const getCommentsDB = async () => {
     console.log("an error occured", error);
   }
 };
+console.log("comments are", getCommentsDB);
 const createCommentDB = async (commentData) => {
   let response = {};
 
@@ -286,4 +307,5 @@ export {
   deleteProjectDB,
   deleteCommentDB,
   deleteBlogDB,
+  updateViewsDB,
 };

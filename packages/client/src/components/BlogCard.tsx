@@ -9,26 +9,34 @@ function BlogCard({
   comments,
 }: {
   blogs: BlogCardType;
-  comments: comment[];
+  comments: comment[] | [];
 }) {
-  const { title, subtitle, description, image, link, id, likes, views, date } =
-    blogs;
-  const currentBlogComments = comments.filter(
-    (comment) => comment.blogID == Number(id),
-  );
+  const {
+    _created_at,
+    title,
+    subtitle,
+    _message,
+    _image,
+    link,
+    id,
+    likes,
+    views,
+  } = blogs;
+  const currentBlogComments =
+    comments.filter((comment) => comment.blogID == Number(id)) || [];
   const { ref, inView } = useInView();
 
   return (
     <Link to={{ pathname: `/blog/${id}` }}>
       <div
         ref={ref}
-        className={` mx-auto w-full sm:w-[80%] flex flex-wrap sm:flex-nowrap mt-4 border-b border-primary/10  hover:rounded-lg hover:bg-white-faint/10 hover:transition-all hover:duration-300 ${inView ? "animate-fadeInUp transition-all duration-500 delay-300" : ""} `}
+        className={` mx-auto w-full sm:w-[800px]  flex flex-wrap sm:flex-nowrap mt-4 border-b border-primary/10  hover:rounded-lg hover:bg-white-faint/10 hover:transition-all hover:duration-300 ${inView ? "animate-fadeInUp transition-all duration-500 delay-300" : ""} `}
       >
         <div className="w-full sm:w-[70%] p-2 sm:p-6 text-white  ">
           <div className="flex gap-5">
             <div
               className="sm:hidden size-[60px] bg-primary bg-cover bg-center rounded-lg"
-              style={{ backgroundImage: `url(${image})` }}
+              style={{ backgroundImage: `url(${_image})` }}
             ></div>
             <span>
               <h1 className="font-bold text-lg sm:text-lg text-white">
@@ -41,12 +49,12 @@ function BlogCard({
           </div>
 
           <div className="mt-4 text-white-faint text-sm">
-            {description.split("").slice(0, 100)}
+            {_message.split("").slice(0, 100)}
 
             <div className="flex justify-between mt-4"></div>
           </div>
           <div className="w-full h-10 flex justify-end px-4 items-center gap-2 text-sm text-white-faint ">
-            <span className="mr-auto">{date}</span>
+            <span className="mr-auto">{_created_at}</span>
             <span className="flex gap-1 ">
               {likes}
               <Heart className="text-pink-600 size-5" />
@@ -65,7 +73,7 @@ function BlogCard({
         <div className="w-full sm:w-[30%] flex justify-center items-center p-2 sm:p-10 ">
           <div
             className="hidden sm:block size-[150px] bg-primary bg-cover bg-center hover:bg-blue-300 rounded-lg transition-all duration-300"
-            style={{ backgroundImage: `url(${image})` }}
+            style={{ backgroundImage: `url(${_image})` }}
           ></div>
         </div>
       </div>

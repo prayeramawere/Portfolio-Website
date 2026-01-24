@@ -3,24 +3,25 @@
     role?: string;
     bio?: string;
     story?: string;
-    skills?: string[];
     image?: string;
-    category:string
   };
   export type blog = {
   id: number;
+  _created_at:string;
+  category:string;
   title: string;
   subtitle: string;
-  description: string;
-  image: string;
+  _message: string;
+  _image: string;
   link: string;
-  category: string;
+  likes:number;
+  views:number;
 };
 
 export type comment = {
   blogID: number;
   id: number;
-  date: string;
+  _created_at: string;
   comment: string;
   author: string;
   likes: string;
@@ -33,26 +34,24 @@ export type TestimonialCardType = {
   category?:string
 };
 export type BlogCardType = {
-  id:string;
+  id: number;
+  _created_at:string;
+  category:string;
   title: string;
   subtitle: string;
-  description: string;
-  image: string;
-  link:string
-  category?:string
-  date:string
-  likes:number
-  views:number
+  _message: string;
+  _image: string;
+  link: string;
+  likes:number;
+  views:number;
 };
  export type PrivateAdminData = {
     id:string
-    name?: string;
-    role?: string;
+    username?: string;
+    _role?: string;
     bio?: string;
     story?: string;
-    skills?: string[];
-    image?: string;
-    category?:string
+    _image?: string;
     unique_code1:string;
     unique_code2:string;
   };
@@ -78,11 +77,15 @@ export type BlogCardType = {
     data:TestimonialCardType [];
   };
   type Project = {
-name:string
-link:string
-image:string
-description:string
-category:string}
+    title:string 
+    _description:string
+    benefit1:string
+    benefit2:string
+    benefit3:string
+    link:string
+    _image:string
+
+}
 
   export type Highlights =
   | { type: "blog"; data: BlogCardType }

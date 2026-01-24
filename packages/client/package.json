@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
+    "@uiw/react-md-editor": "^4.0.11",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "express": "^5.1.0",
     "lucide-react": "^0.555.0",
+    "markdown-it": "^14.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-intersection-observer": "^10.0.2",
@@ -24,6 +26,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.10.1",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",

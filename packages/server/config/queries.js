@@ -4,9 +4,11 @@ export const get_admin_query = "SELECT * FROM Admin";
 
 export const create_blog_query = `INSERT INTO Blogs ( _created_at,category,title,subtitle,_message,_image,link,likes,views) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
 export const update_blog_query = `UPDATE Blogs SET category = $1,title = $2, subtitle = $3, _message =$4, _image = $5, link = $6 ,likes = $7,views =$8 WHERE id = $9`;
-export const get_blog_byId = "SELECT * FROM Blogs WHERE id = $1";
+export const get_blog_byId =
+  "SELECT * FROM Blogs WHERE id = $1 ORDER BY _created_at ASC";
 export const delete_blog_query = " DELETE FROM Blogs WHERE id = $1";
 export const get_blogs_query = "SELECT * FROM Blogs";
+export const update_blogsV_query = "UPDATE Blogs SET views = $1 WHERE id = $2";
 
 export const create_comment_query = `INSERT INTO Comments (BlogID,_created_at,comment,author,likes) VALUES ($1, $2, $3, $4, $5)`;
 export const update_comment_query = `UPDATE Comments SET BlogID = $1,_created_at = $2, comment = $3, author =$4, likes = $5 WHERE id = $6`;

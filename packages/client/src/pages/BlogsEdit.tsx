@@ -5,10 +5,12 @@ import type {
   AdminData,
   BlogRes,
   BlogCardType,
+  CommentsRes,
 } from "../../lib/types";
 import MultiBlogCard from "../components/MultiBlogCard";
 import SearchForm from "../components/SearchForm";
 import { useSearchParams } from "react-router-dom";
+import BlogCard from "@/components/BlogCard";
 
 export default function BlogsEdit() {
   const [searchParams] = useSearchParams();
@@ -16,6 +18,7 @@ export default function BlogsEdit() {
 
   const [admin, setAdmin] = useState<AdminRes | null>(null);
   const [blogs, setBlogs] = useState<BlogRes | null>(null);
+  const [comments, setComments] = useState<CommentsRes | null>(null);
 
   const getAdmin = async () => {
     const response = await fetch(
@@ -38,13 +41,24 @@ export default function BlogsEdit() {
 
     setBlogs(data as BlogRes);
   };
+  const getComments = async () => {
+    const response = await fetch("http://localhost:5000/comment");
+    if (!response.ok) {
+      throw new Error(`problem while fetching comments ${response.status}`);
+    }
+    const data = await response.json();
+
+    setComments(data as CommentsRes);
+  };
   useEffect(() => {
+    getComments();
     getAdmin();
     getBlogs();
   }, []);
 
   const adminInfo = admin?.data;
   const blogData = blogs?.data;
+  const commentsData = comments?.data;
 
   const image = adminInfo?.image;
   const url: string = "/admin/blogs/edit";
@@ -70,20 +84,20 @@ export default function BlogsEdit() {
                     [
                       blog.title,
                       blog.category,
-                      blog.description,
+                      blog._message,
                       blog.subtitle,
                     ].some((field) =>
                       field?.toLowerCase().includes(query.toLowerCase()),
                     ),
                   )
                   .map((blog) => (
-                    <MultiBlogCard blogs={blog} />
+                    <MultiBlogCard blogs={blog} comments={commentsData || []} />
                   ))}
               </>
             ) : (
               <>
                 {blogData?.map((blog: BlogCardType) => (
-                  <MultiBlogCard blogs={blog} />
+                  <MultiBlogCard blogs={blog} comments={commentsData || []} />
                 ))}{" "}
               </>
             )}

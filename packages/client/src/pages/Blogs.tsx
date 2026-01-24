@@ -115,7 +115,7 @@ export default function BlogsEdit() {
                   [
                     blog.title,
                     blog.category,
-                    blog.description,
+                    blog._message,
                     blog.subtitle,
                   ].some((field) =>
                     field?.toLowerCase().includes(query.toLowerCase()),
@@ -124,8 +124,8 @@ export default function BlogsEdit() {
                 .map((blog: BlogCardType, index: number) => (
                   <BlogCard
                     blogs={blog}
-                    comments={commentsData || []}
                     key={index}
+                    comments={commentsData || []}
                   />
                 ))}
             </>

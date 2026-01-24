@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { sign } = require("jsonwebtoken");
+const sign = require("jsonwebtoken");
 
 const router = Router();
 

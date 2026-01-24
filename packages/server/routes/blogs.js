@@ -4,9 +4,11 @@ import pkg from "../middleware/auth.cjs";
 const authenticationMiddleware = pkg;
 
 import pkg2 from "../controllers/blogs.js";
-const { getBlog, postBlog, updateBlog, deleteBlog } = pkg2;
+const { getBlog, postBlog, updateBlog, deleteBlog, updateViews } = pkg2;
 
 router.get("/", getBlog);
+
+router.post("/update", updateViews);
 
 router.post("/", authenticationMiddleware, postBlog);
 

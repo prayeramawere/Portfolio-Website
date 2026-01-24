@@ -3,6 +3,10 @@ import { useActionState, useEffect, useState, type FormEvent } from "react";
 import type { blog, comment } from "lib/types";
 import CommentCard from "../components/CommentCard";
 import { useNavigate } from "react-router-dom";
+import markdownit from "markdown-it";
+import BaseNav from "@/components/BaseNav";
+
+const md = markdownit();
 
 function Blog() {
   const navigate = useNavigate();
@@ -60,7 +64,7 @@ function Blog() {
     }
 
     const data = await response.json();
-    console.log(data);
+    console.log(data.data);
     setComments(await data.data);
   };
 
@@ -74,11 +78,40 @@ function Blog() {
   );
 
   const blog = blogs.find((blog: blog) => blog.id == Number(id));
+  const parsedContent = md.render(blog?._message || "");
+
+  // const updateViews = async () => {
+  //   try {
+  //     const res = await fetch("http://localhost:5000/blog/update", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         views: blog?.views ? blog.views + 1 : 1,
+  //         id: Number(id),
+  //       }),
+  //     });
+
+  //     console.log(res);
+
+  //     navigate(`/blog/${id}`);
+  //     return "success adding comment";
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   console.log("this is the blog data", blogs);
+  //   updateViews();
+  // }, []);
+
   return (
     <>
+      <BaseNav />
       <div className="flex justify-center items-center w-full flex-wrap">
-        <div className="w-[96%] bg-element rounded-2xl h-[95vh] mt-4 flex-1 r overflow-y-scroll no-scrollbar flex flex-wrap">
-          <div className=" sm:w-[10%] flex flex-wrap sm:justify-center w-full">
+        <div className="w-full flex-1 r overflow-y-scroll no-scrollbar flex flex-wrap text-white">
+          {/* <div className=" sm:w-[10%] flex flex-wrap sm:justify-center w-full">
             <div className="mt-5 flex justify-between w-full m-2 sm:flex-wrap">
               <Link to={"/"}>
                 <div className="sm:flex sm:flex-wrap justify-center ">
@@ -95,29 +128,44 @@ function Blog() {
                 </div>
               </Link>
             </div>
-          </div>
-          <div className=" sm:w-[60%] p-4 w-full">
-            <div className="mt-3">
-              <h1 className="text-3xl text-black font-bold">{blog?.title}</h1>
-              <h2 className="text-lg text-black-faint font-bold">
-                {blog?.subtitle}
-              </h2>
-              <center>
-                <hr className="mt-4 text-black-faint w-[70%] self-center" />
-              </center>
-              <p className="mt-5 gap-3">
-                <span className="flex justify-center">
-                  <img
-                    src={blog?.image}
-                    alt=""
-                    className="w-[80%] h-[300px] object-cover"
-                  />
-                </span>
-                <span className="mt-5">{blog?.description}</span>
-              </p>
+          </div> */}
+          <div className=" sm:w-[80%] p-4 w-full bg-white flex justify-center">
+            <div>
+              <div className="w-full h-[50px] ">
+                <div
+                  className="w-[50px] h-[50px] bg-black/20 rounded-full"
+                  style={{ backgroundImage: `url(../self.png)` }}
+                ></div>
+              </div>
+              <div className="mt-3">
+                <h1 className="text-3xl text-black font-bold">{blog?.title}</h1>
+                <h2 className="text-lg text-white-faint font-bold">
+                  {blog?.subtitle}
+                </h2>
+                <center>
+                  <hr className="mt-4 text-black-faint w-[70%] self-center" />
+                </center>
+                <div className="mt-5 gap-3">
+                  <span className="flex justify-center">
+                    <img
+                      src={blog?._image}
+                      alt=""
+                      className="w-[80%] h-[300px] object-cover"
+                    />
+                  </span>
+                  {parsedContent ? (
+                    <article
+                      className="prose lg:prose-xl text-sm"
+                      dangerouslySetInnerHTML={{ __html: parsedContent }}
+                    />
+                  ) : (
+                    <p>no data found</p>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-          <div className=" sm:w-[30%] p-5 w-full">
+          <div className=" sm:w-[10%] p-5 w-full">
             <div>
               <h2>
                 Comments{" "}

@@ -19,88 +19,66 @@ import FloatingNav from "@/components/FloatingNav";
 import Footer from "@/components/Footer";
 
 function Home() {
-  const [highlights, setHighlights] = useState<Highlights[] | null>(null);
   const [admin, setAdmin] = useState<AdminRes | null>();
   const [projects, setProjects] = useState(null);
   const [comments, setComments] = useState<CommentsRes | null>(null);
   const [blogs, setBlogs] = useState<BlogRes | null>(null);
-  const [testimonials, setTestimonials] = useState<TestimonialRes>();
+  // const [testimonials, setTestimonials] = useState<TestimonialRes>();
 
   type Links = {
     link1: string;
     link2: string;
     link3: string;
     link4: string;
-    link5: string;
-    link6: string;
   };
   const currentYear = new Date().getFullYear();
 
   const loadData = async (Links: Links) => {
-    const { link1, link2, link3, link4, link5, link6 } = Links;
-    const [
-      highlightsRes,
-      adminRes,
-      projectsRes,
-      commentsRes,
-      blogsRes,
-      testimonialsRes,
-    ] = await Promise.all([
+    const { link1, link2, link3, link4 } = Links;
+    const [adminRes, projectsRes, commentsRes, blogsRes] = await Promise.all([
       fetch(link1),
       fetch(link2),
       fetch(link3),
       fetch(link4),
-      fetch(link5),
-      fetch(link6),
     ]);
 
-    const [highlights, admin, projects, comments, blogs, testimonials] =
-      await Promise.all([
-        highlightsRes.json(),
-        adminRes.json(),
-        projectsRes.json(),
-        commentsRes.json(),
-        blogsRes.json(),
-        testimonialsRes.json(),
-      ]);
-    console.log(highlights, admin, projects, comments, blogs, testimonials);
+    const [admin, projects, comments, blogs] = await Promise.all([
+      adminRes.json(),
+      projectsRes.json(),
+      commentsRes.json(),
+      blogsRes.json(),
+    ]);
+    console.log(admin, projects, comments, blogs);
 
     setAdmin(admin as AdminRes);
-    setHighlights(highlights.data as Highlights[]);
     setProjects(projects);
     setComments(comments);
     setBlogs(blogs as BlogRes);
-    setTestimonials(testimonials as TestimonialRes);
   };
 
   useEffect(() => {
     const links = {
-      link1: "http://localhost:5000/highlights",
-      link2: "http://localhost:5000/secure/12ew/admin/public",
-      link3: "http://localhost:5000/projects",
-      link4: "http://localhost:5000/comment",
-      link5: "http://localhost:5000/blog",
-      link6: "http://localhost:5000/testimonial",
+      link1: "http://localhost:5000/secure/12ew/admin/public",
+      link2: "http://localhost:5000/projects",
+      link3: "http://localhost:5000/comment",
+      link4: "http://localhost:5000/blog",
+      // link6: "http://localhost:5000/testimonial",
     };
     loadData(links);
   }, []);
 
-  if (!admin || !testimonials || !blogs || !comments) {
-    return <div>Loading...</div>;
+  if (!admin || !blogs || !comments) {
+    return <div className="text-white text-3xl">Loading...</div>;
   }
 
   if (!admin?.success) {
     console.log(admin?.msg);
   }
 
-  const { name, role, bio, story, skills = [], image } = admin.data;
+  const { name, role, bio, story, image } = admin.data;
   const commentsData = comments.data as comment[];
 
-  const testimonialData = testimonials.data;
   const blogData = blogs.data;
-  // const highlightData = highlights.data;
-  // console.log("Highlights Data:", highlightData);
-  console.log("Testimonials Data:", testimonialData);
 
   const social = [
     {
@@ -133,7 +111,7 @@ function Home() {
     <>
       <div className="scroll-smooth">
         <BaseNav />
-        <Hero data={[social, name || "", role || "", bio || ""]} />
+        <Hero data={[social, name || "", role || "not there", bio || ""]} />
         <About bio={bio || ""} />
         <center>
           <hr className="w-[60%] text-primary" />
