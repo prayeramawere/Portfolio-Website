@@ -19,7 +19,7 @@
 };
 
 export type comment = {
-  blogID: number;
+  blogid: number;
   id: number;
   _created_at: string;
   comment: string;

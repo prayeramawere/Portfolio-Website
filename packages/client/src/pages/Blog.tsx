@@ -10,9 +10,10 @@ const md = markdownit();
 
 function Blog() {
   const navigate = useNavigate();
-  const [blogs, setBlogs] = useState<blog[]>([]);
+  const [blog, setBlog] = useState<blog>();
   const [comments, setComments] = useState<comment[]>([]);
   const [open, setOpen] = useState<boolean>(false);
+  const [views, setViews] = useState(0);
   const { id } = useParams();
 
   const handleFormSubmit = async (prev: string, formData: FormData) => {
@@ -20,8 +21,8 @@ function Blog() {
 
     const formValues = {
       blogID: formData.get("blogID") as string,
-      author: formData.get("author") as string,
       comment: formData.get("comment") as string,
+      author: formData.get("author") as string,
     };
 
     try {
@@ -44,8 +45,8 @@ function Blog() {
 
   const [state, action, loading] = useActionState(handleFormSubmit, "test");
 
-  const getBlogs = async () => {
-    const response = await fetch("http://localhost:5000/blog");
+  const getBlog = async () => {
+    const response = await fetch(`http://localhost:5000/blog/${id}`);
     if (!response.ok) {
       console.log(
         `error occured wie trying to get response: ${response.statusText}`,
@@ -53,7 +54,7 @@ function Blog() {
     }
 
     const data = await response.json();
-    setBlogs(await data.data);
+    setBlog(await data.data);
   };
   const getComments = async () => {
     const response = await fetch("http://localhost:5000/comment");
@@ -64,34 +65,53 @@ function Blog() {
     }
 
     const data = await response.json();
-    console.log(data.data);
+    console.log(data);
     setComments(await data.data);
   };
 
+  const getViews = async () => {
+    const response = await fetch(`http://localhost:5000/blog/views/${id}`);
+
+    if (!response.ok) {
+      console.log(
+        `error occurred while trying to get response: ${response.statusText}`,
+      );
+      return;
+    }
+
+    const data = await response.json();
+    const newViews = Number(data.data.views);
+
+    console.log("views for id ->", id, "is", newViews);
+
+    setViews(newViews);
+
+    await fetch("http://localhost:5000/blog/update", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        views: newViews,
+        id: Number(id),
+      }),
+    });
+  };
+
   useEffect(() => {
-    getBlogs();
-    getComments();
-  }, []);
+    getBlog();
+    getViews();
+    const interval = setInterval(getComments, 2000);
+    return () => clearInterval(interval);
+  }, [id]);
 
   const currentBlogComments = comments.filter(
-    (comment) => comment.blogID == Number(id),
+    (comment: comment) => comment.blogid == Number(id),
   );
 
-  const blog = blogs.find((blog: blog) => blog.id == Number(id));
-  const parsedContent = md.render(blog?._message || "");
-
   // const updateViews = async () => {
-  //   try {
-  //     const res = await fetch("http://localhost:5000/blog/update", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         views: blog?.views ? blog.views + 1 : 1,
-  //         id: Number(id),
-  //       }),
-  //     });
+  // try {
+  const parsedContent = md.render(blog?._message || "");
 
   //     console.log(res);
 
@@ -101,10 +121,6 @@ function Blog() {
   //     console.log(error);
   //   }
   // };
-  // useEffect(() => {
-  //   console.log("this is the blog data", blogs);
-  //   updateViews();
-  // }, []);
 
   return (
     <>
@@ -184,7 +200,7 @@ function Blog() {
 
                 {open && (
                   <form action={action} method="POST">
-                    <div className="px-3 py-2 w-[300px] shadow-sm rounded-md text-black">
+                    <div className="px-3 py-2 w-[300px] shadow-sm rounded-md text-white">
                       <input
                         type="number"
                         defaultValue={id}

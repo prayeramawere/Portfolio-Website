@@ -19,6 +19,7 @@ import {
   get_comments_query,
   get_projects_query,
   update_blogsV_query,
+  get_blogViews_query,
 } from "./queries.js";
 
 const client = new Client({
@@ -123,7 +124,11 @@ const updateBlogDB = async (blogData) => {
 };
 const getBlogsById = async (id) => {
   const response = await client.query(get_blog_byId, [id]);
-  return response.rows;
+  return response.rows[0];
+};
+const getViewsById = async (id) => {
+  const response = await client.query(get_blogViews_query, [id]);
+  return response.rows[0];
 };
 
 const updateViewsDB = async (views, id) => {
@@ -308,4 +313,5 @@ export {
   deleteCommentDB,
   deleteBlogDB,
   updateViewsDB,
+  getViewsById,
 };

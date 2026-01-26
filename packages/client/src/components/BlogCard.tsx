@@ -23,7 +23,7 @@ function BlogCard({
     views,
   } = blogs;
   const currentBlogComments =
-    comments.filter((comment) => comment.blogID == Number(id)) || [];
+    comments.filter((comment) => comment.blogid == Number(id)) || [];
   const { ref, inView } = useInView();
 
   return (

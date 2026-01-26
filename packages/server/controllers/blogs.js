@@ -6,6 +6,7 @@ import {
   getBlogsById,
   deleteBlogDB,
   updateViewsDB,
+  getViewsById,
 } from "../config/db.js";
 
 const formartDate = Intl.DateTimeFormat("en-US", {
@@ -20,6 +21,24 @@ const getBlog = async (req, res) => {
     res.status(200).json({ success: true, data: response });
   } catch (error) {
     console.log("an error occured while fetching blogs:", error);
+  }
+};
+const getBlogById = async (req, res) => {
+  const { id } = await req.params;
+  try {
+    const response = await getBlogsById(Number(id));
+    res.status(200).json({ success: true, data: response });
+  } catch (error) {
+    console.log("an error occured while fetching blogs:", error);
+  }
+};
+const getBlogViews = async (req, res) => {
+  const { id } = await req.params;
+  try {
+    const response = await getViewsById(Number(id));
+    res.status(200).json({ success: true, data: response });
+  } catch (error) {
+    console.log("an error occured while fetching views:", error);
   }
 };
 const postBlog = async (req, res) => {
@@ -61,7 +80,7 @@ const updateViews = async (req, res) => {
 
   console.log("the info is", req.body);
   try {
-    const response = await updateViewsDB(views, id);
+    const response = await updateViewsDB(Number(views) + 1, id);
     res.status(200).json({ success: true, data: response });
   } catch (error) {
     console.log("an error occured while updating blogs views:", error);
@@ -105,4 +124,12 @@ const deleteBlog = async (req, res) => {
     });
   }
 };
-export default { getBlog, postBlog, updateBlog, deleteBlog, updateViews };
+export default {
+  getBlog,
+  postBlog,
+  updateBlog,
+  deleteBlog,
+  updateViews,
+  getBlogById,
+  getBlogViews,
+};
