@@ -1,6 +1,6 @@
 {
-  "name": "ultimate-portfolio",
-  "version": "1.0.0",
+  "name": "server",
+  "version": "0.0.2",
   "main": "app.js",
   "type": "module",
   "scripts": {
