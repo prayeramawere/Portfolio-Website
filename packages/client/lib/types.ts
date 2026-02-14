@@ -18,6 +18,17 @@
   views:number;
 };
 
+export type project = {
+  id:number,
+  title:string,
+  _description:string,
+  benefit1:string,
+  benefit2:string,
+  benefit3:string,
+  link:string,
+  _image:string
+}
+
 export type comment = {
   blogid: number;
   id: number;
@@ -59,6 +70,11 @@ export type BlogCardType = {
     success: boolean;
     msg?: string;
     data: AdminData;
+  };
+  export type ProjectRes = {
+    success: boolean;
+    msg?: string;
+    data: project[];
   };
   export type CommentsRes = {
     success: boolean;

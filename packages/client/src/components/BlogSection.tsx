@@ -23,13 +23,13 @@ function BlogSection({
             Blogs & Articles
           </h1>
           <div className="flex ">
-            <div className="flex justify-center items-center sm:w-[80%] w-full flex-col">
+            <div className="flex justify-center items-center sm:w-[90%] w-full flex-col">
               {blogData.map((blog: BlogCardType) => (
                 <BlogCard blogs={blog} comments={comments} />
               ))}
             </div>
 
-            <div className=" w-[20%]  md:flex hidden">
+            <div className=" w-[10%]  md:flex hidden">
               <div className="gap-4 p-4">
                 {categories.map((category: string, index: number) => (
                   <BlogCategory category={category} key={index} />

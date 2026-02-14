@@ -10,6 +10,8 @@ export const delete_blog_query = " DELETE FROM Blogs WHERE id = $1";
 export const get_blogs_query = "SELECT * FROM Blogs ORDER BY _created_at DESC";
 export const get_blogViews_query = "SELECT views FROM Blogs WHERE id = $1";
 export const update_blogsV_query = "UPDATE Blogs SET views = $1 WHERE id = $2";
+export const update_blogLikes_query =
+  "UPDATE Blogs SET likes = $1 WHERE id = $2";
 
 export const create_comment_query = `INSERT INTO Comments (BlogID,_created_at,comment,author,likes) VALUES ($1, $2, $3, $4, $5)`;
 export const update_comment_query = `UPDATE Comments SET BlogID = $1,_created_at = $2, comment = $3, author =$4, likes = $5 WHERE id = $6`;

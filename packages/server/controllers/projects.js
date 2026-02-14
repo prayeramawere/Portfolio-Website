@@ -7,9 +7,10 @@ import {
   deleteProjectDB,
 } from "../config/db.js";
 
-const getProjects = (req, res) => {
+const getProjects = async (req, res) => {
   try {
-    const response = getProjectsDB();
+    const response = await getProjectsDB();
+    console.log("response is ", response);
     res.status(200).json({ success: true, data: response });
   } catch (error) {
     console.log("an error occured while fetching projects: ", error);

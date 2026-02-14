@@ -4,6 +4,8 @@ import type {
   comment,
   CommentsRes,
   Highlights,
+  project,
+  ProjectRes,
   TestimonialRes,
 } from "../../lib/types";
 
@@ -14,13 +16,14 @@ import Hero from "../components/Hero";
 
 import About from "@/components/About";
 import BlogSection from "@/components/BlogSection";
+import ProductSection from "@/components/ProductSection";
 import PersonalProjects from "@/components/PersonalProjects";
 import FloatingNav from "@/components/FloatingNav";
 import Footer from "@/components/Footer";
 
 function Home() {
   const [admin, setAdmin] = useState<AdminRes | null>();
-  const [projects, setProjects] = useState(null);
+  const [projects, setProjects] = useState<ProjectRes | null>(null);
   const [comments, setComments] = useState<CommentsRes | null>(null);
   const [blogs, setBlogs] = useState<BlogRes | null>(null);
   // const [testimonials, setTestimonials] = useState<TestimonialRes>();
@@ -51,7 +54,7 @@ function Home() {
     console.log(admin, projects, comments, blogs);
 
     setAdmin(admin as AdminRes);
-    setProjects(projects);
+    setProjects(projects as ProjectRes);
     setComments(comments);
     setBlogs(blogs as BlogRes);
   };
@@ -79,6 +82,7 @@ function Home() {
   const commentsData = comments.data as comment[];
 
   const blogData = blogs.data;
+  const projectsData = projects?.data as project[];
 
   const social = [
     {
@@ -117,6 +121,7 @@ function Home() {
           <hr className="w-[60%] text-primary" />
         </center>
         <BlogSection blogData={blogData} comments={commentsData || []} />
+        <ProductSection projects={projectsData || []} />
         <PersonalProjects />
         <Footer currentYear={currentYear} />
         <FloatingNav />

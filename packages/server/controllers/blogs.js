@@ -7,6 +7,7 @@ import {
   deleteBlogDB,
   updateViewsDB,
   getViewsById,
+  updateLikesDB,
 } from "../config/db.js";
 
 const formartDate = Intl.DateTimeFormat("en-US", {
@@ -86,6 +87,18 @@ const updateViews = async (req, res) => {
     console.log("an error occured while updating blogs views:", error);
   }
 };
+const updateLikes = async (req, res) => {
+  const { likes, id } = req.body;
+  console.log("invoked");
+
+  console.log("the info is", req.body);
+  try {
+    const response = await updateLikesDB(Number(likes) + 1, id);
+    res.status(200).json({ success: true, data: response });
+  } catch (error) {
+    console.log("an error occured while updating blogs views:", error);
+  }
+};
 const updateBlog = async (req, res) => {
   const { id } = req.params;
   const { category, title, subtitle, _message, _image, link } = req.body;
@@ -132,4 +145,5 @@ export default {
   updateViews,
   getBlogById,
   getBlogViews,
+  updateLikes,
 };

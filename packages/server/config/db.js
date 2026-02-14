@@ -20,6 +20,7 @@ import {
   get_projects_query,
   update_blogsV_query,
   get_blogViews_query,
+  update_blogLikes_query,
 } from "./queries.js";
 
 const client = new Client({
@@ -144,6 +145,24 @@ const updateViewsDB = async (views, id) => {
         : (response = {
             status: "SUCCESS",
             msg: "updated views successfuly",
+          });
+    },
+  );
+  return response;
+};
+const updateLikesDB = async (likes, id) => {
+  let response = client.query(
+    update_blogLikes_query,
+    [likes, id],
+    (err, result) => {
+      err
+        ? (response = {
+            status: "ERROR",
+            msg: err,
+          })
+        : (response = {
+            status: "SUCCESS",
+            msg: "updated likes successfuly",
           });
     },
   );
@@ -314,4 +333,5 @@ export {
   deleteBlogDB,
   updateViewsDB,
   getViewsById,
+  updateLikesDB,
 };

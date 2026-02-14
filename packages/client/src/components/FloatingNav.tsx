@@ -6,21 +6,21 @@ function FloatingNav() {
     <div className="w-full flex justify-center">
       <div className="navbar bottom-5 text-center text-element flex justify-center items-center mt-10 mb-3">
         <ul className="list-none flex gap-4">
-          <Links to="/">
+          <a href="/">
             <li className="link">home</li>
-          </Links>
-          <Links to={{ hash: "about" }}>
+          </a>
+          <a href="./#about">
             <li className="link">about</li>
-          </Links>
-          <Links to="/blogs">
+          </a>
+          <a href="/blogs">
             <li className="link">blogs</li>
-          </Links>
-          <Links to={{ hash: "contact" }}>
+          </a>
+          <a href="#contact">
             <li className="link">contact</li>
-          </Links>
-          <Links to={{ pathname: "http://localhost:5173", hash: "projects" }}>
+          </a>
+          <a href="#projects">
             <li className="link">projects</li>
-          </Links>
+          </a>
         </ul>
       </div>
     </div>

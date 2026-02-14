@@ -99,7 +99,7 @@ export default function BlogsEdit() {
     <>
       <BaseNav />
       <div className="w-full  flex r overflow-y-scroll no-scrollbar">
-        <div className="md:w-[75%] w-full flex justify-center items-center flex-wrap">
+        <div className="md:w-[85%] w-full flex justify-center items-center flex-wrap">
           <div className="flex gap-2 w-full justify-center ml-2 mb-10 ">
             <SearchForm query={query} url={url} />
             <img
@@ -141,26 +141,26 @@ export default function BlogsEdit() {
             </>
           )}
         </div>
-        <div className="w-[25%]  py-4 md:flex flex-col  items-center hidden ">
+        <div className="w-[15%]  py-4 md:flex flex-col  items-center hidden ">
           <div
-            className="w-[100px] h-[100px] bg-white bg-cover bg-center mt-5 rounded-full "
+            className="w-[90px] h-[90px] bg-white/20 bg-cover bg-center mt-5 rounded-full "
             style={{ backgroundImage: `url(../../self.png)` }}
           ></div>
-          <div className="mt-3 w-[80%]">
+          {/* <div className="mt-3 w-[80%]">
             <span className="text-white-faint">{adminInfo?.story}</span>
-          </div>
-          <div className="bottom-2 mb-2 flex fixed gap-2">
-            {social.map((icon) => (
-              <a key={icon.url} href={icon.link}>
-                <img src={`../${icon.url}.png`} className=" social gap-3" />
-              </a>
-            ))}
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="flex">
-        <FloatingSocial social={social} />
+        {/* <FloatingSocial social={social} /> */}
         <FloatingNav />
+        <div className="bottom-2 mb-2 flex fixed gap-2 ">
+          {social.map((icon) => (
+            <a key={icon.url} href={icon.link}>
+              <img src={`../${icon.url}.png`} className=" social gap-3" />
+            </a>
+          ))}
+        </div>
       </div>
 
       <Footer currentYear={new Date().getFullYear()} />

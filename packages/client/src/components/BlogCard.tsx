@@ -26,6 +26,12 @@ function BlogCard({
     comments.filter((comment) => comment.blogid == Number(id)) || [];
   const { ref, inView } = useInView();
 
+  const formartDate = Intl.DateTimeFormat("en-us", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
   return (
     <Link to={{ pathname: `/blog/${id}` }}>
       <div
@@ -54,7 +60,9 @@ function BlogCard({
             <div className="flex justify-between mt-4"></div>
           </div>
           <div className="w-full h-10 flex justify-end px-4 items-center gap-2 text-sm text-white-faint ">
-            <span className="mr-auto">{_created_at}</span>
+            <span className="mr-auto">
+              {formartDate.format(new Date(_created_at))}
+            </span>
             <span className="flex gap-1 ">
               {likes}
               <Heart className="text-pink-600 size-5" />

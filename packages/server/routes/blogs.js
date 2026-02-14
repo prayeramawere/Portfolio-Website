@@ -12,6 +12,7 @@ const {
   updateViews,
   getBlogById,
   getBlogViews,
+  updateLikes,
 } = pkg2;
 
 router.get("/", getBlog);
@@ -21,6 +22,8 @@ router.get("/:id", getBlogById);
 router.get("/views/:id", getBlogViews);
 
 router.post("/update", updateViews);
+
+router.put("/update_likes", updateLikes);
 
 router.post("/", authenticationMiddleware, postBlog);
 

@@ -10,3 +10,5 @@ CREATE TABLE Projects (
     link TEXT ,
     _image TEXT NOT NULL
 )
+
+INSERT INTO Projects (title,_description,benefit1,benefit2,benefit3,link,_image) VALUES ('Everrsow','a e-commerce platform designed to help user shop smarter and faster','fast loading','10% converting rate','negotiable price','https://everrsow.com/logo.png','https://everrsow.com/logo.png')

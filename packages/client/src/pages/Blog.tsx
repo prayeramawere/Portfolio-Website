@@ -5,6 +5,9 @@ import CommentCard from "../components/CommentCard";
 import { useNavigate } from "react-router-dom";
 import markdownit from "markdown-it";
 import BaseNav from "@/components/BaseNav";
+import FloatingNav from "@/components/FloatingNav";
+import Footer from "@/components/Footer";
+import { Heart } from "lucide-react";
 
 const md = markdownit();
 
@@ -15,6 +18,19 @@ function Blog() {
   const [open, setOpen] = useState<boolean>(false);
   const [views, setViews] = useState(0);
   const { id } = useParams();
+
+  const addLike = async () => {
+    await fetch("http://localhost:5000/blog/update_likes", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        likes: blog?.likes,
+        id: Number(id),
+      }),
+    });
+  };
 
   const handleFormSubmit = async (prev: string, formData: FormData) => {
     console.log("invoked");
@@ -147,11 +163,18 @@ function Blog() {
           </div> */}
           <div className=" sm:w-[80%] p-4 w-full bg-white flex justify-center">
             <div>
-              <div className="w-full h-[50px] ">
+              <div className="w-full h-[50px] flex justify-between items-center">
                 <div
                   className="w-[50px] h-[50px] bg-black/20 rounded-full"
-                  style={{ backgroundImage: `url(../self.png)` }}
+                  style={{ backgroundImage: `url(../../self.png)` }}
                 ></div>
+                <div
+                  onClick={() => addLike()}
+                  className="flex gap-2 px-2 py-1 justify-center rounded-lg shadow-primary hover:shadow-sm"
+                >
+                  <Heart className="text-pink-500  " />
+                  <span className="text-gray-500">{blog?.likes}</span>
+                </div>
               </div>
               <div className="mt-3">
                 <h1 className="text-3xl text-black font-bold">{blog?.title}</h1>
@@ -242,26 +265,9 @@ function Blog() {
         </div>
       </div>
       <div className="w-full flex justify-center">
-        <div className="navbar bottom-5 text-center text-element flex justify-center items-center mt-10 mb-3">
-          <ul className="list-none flex gap-4">
-            <Link to="/">
-              <li className="link">home</li>
-            </Link>
-            <Link to={{ hash: "about" }}>
-              <li className="link">about</li>
-            </Link>
-            <Link to="/blogs">
-              <li className="link">blogs</li>
-            </Link>
-            <Link to={{ hash: "contact" }}>
-              <li className="link">contact</li>
-            </Link>
-            <Link to={{ pathname: "http://localhost:5173", hash: "projects" }}>
-              <li className="link">projects</li>
-            </Link>
-          </ul>
-        </div>
+        <FloatingNav />
       </div>
+      <Footer currentYear={new Date().getFullYear()} />
     </>
   );
 }
