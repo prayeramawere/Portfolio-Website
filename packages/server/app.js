@@ -15,11 +15,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("./public"));
 
-app.use("/secure/12ew/admin", admin);
-app.use("/secure/12ew/admin/login", login);
-app.use("/comment", comments);
-app.use("/blog", blogs);
-app.use("/projects", projects);
+app.use("/api/secure/12ew/admin", admin);
+app.use("/api/secure/12ew/admin/login", login);
+app.use("/api/comment", comments);
+app.use("/api/blog", blogs);
+app.use("/api/projects", projects);
 
 app.listen(5000, "0.0.0.0", () => {
   console.log("Server running on:");

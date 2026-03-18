@@ -20,7 +20,7 @@ function Blog() {
   const { id } = useParams();
 
   const addLike = async () => {
-    await fetch("http://localhost:5000/blog/update_likes", {
+    await fetch("/api/blog/update_likes", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ function Blog() {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/comment", {
+      const res = await fetch("/api/comment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ function Blog() {
   const [state, action, loading] = useActionState(handleFormSubmit, "test");
 
   const getBlog = async () => {
-    const response = await fetch(`http://localhost:5000/blog/${id}`);
+    const response = await fetch(`/api/blog/${id}`);
     if (!response.ok) {
       console.log(
         `error occured wie trying to get response: ${response.statusText}`,
@@ -73,7 +73,7 @@ function Blog() {
     setBlog(await data.data);
   };
   const getComments = async () => {
-    const response = await fetch("http://localhost:5000/comment");
+    const response = await fetch("/api/comment");
     if (!response.ok) {
       console.log(
         `error occured wie trying to get response: ${response.statusText}`,
@@ -86,7 +86,7 @@ function Blog() {
   };
 
   const getViews = async () => {
-    const response = await fetch(`http://localhost:5000/blog/views/${id}`);
+    const response = await fetch(`/api/blog/views/${id}`);
 
     if (!response.ok) {
       console.log(
@@ -102,7 +102,7 @@ function Blog() {
 
     setViews(newViews);
 
-    await fetch("http://localhost:5000/blog/update", {
+    await fetch("/api/blog/update", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

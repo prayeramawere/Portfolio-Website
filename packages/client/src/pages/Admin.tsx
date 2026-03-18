@@ -25,7 +25,7 @@ function Admin() {
       unique_code2: formData.get("unique_code2") as string,
     };
     try {
-      const res = await fetch("http://localhost:5000/secure/12ew/admin/login", {
+      const res = await fetch("/api/secure/12ew/admin/login", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -33,6 +33,7 @@ function Admin() {
         body: JSON.stringify(formValues),
       });
       const data = await res.json();
+      console.log("data recieved from login is:", data);
       if (data.success == true) {
         navigate("/admin");
       }
@@ -55,7 +56,7 @@ function Admin() {
   console.log(token);
 
   const fetchAdmin = async () => {
-    const response = await fetch("http://localhost:5000/secure/12ew/admin", {
+    const response = await fetch("/api/secure/12ew/admin", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

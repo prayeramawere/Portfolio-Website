@@ -1,13 +1,7 @@
 {
-    "dev":{
-        "driver":"pg",
-        "host":"localhost",
-        "user":"postgres",
-        "password":"Mawere#1234",
-        "database":"portfolioamo"
-    },
-    "prod": {
-        "driver": "pg",
-        "url": { "ENV": "DATABASE_URL" }
+  "dev": {
+    "driver": "pg",
+    "url": { "ENV": "DATABASE_URL" }
   }
 }
+

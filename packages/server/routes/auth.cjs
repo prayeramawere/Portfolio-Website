@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const sign = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 const router = Router();
 
@@ -20,13 +20,13 @@ router.post("/", async (req, res) => {
       unique_code1 === process.env.UNIQUE_CODE1 &&
       unique_code2 === process.env.UNIQUE_CODE2
     ) {
-      const token = sign(
+      const token = jwt.sign(
         { unique_code1, unique_code2 },
         process.env.SECRET_KEY,
         { expiresIn: "30d" },
       );
 
-      return res.status(200).json({ success: true, token });
+      return res.status(200).json({ success: true, token: token });
     }
 
     return res.status(401).json({

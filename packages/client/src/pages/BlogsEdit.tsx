@@ -21,9 +21,7 @@ export default function BlogsEdit() {
   const [comments, setComments] = useState<CommentsRes | null>(null);
 
   const getAdmin = async () => {
-    const response = await fetch(
-      "http://localhost:5000/secure/12ew/admin/public",
-    );
+    const response = await fetch("/api/secure/12ew/admin/public");
     if (!response.ok) {
       throw new Error(`problem while fetching admin ${response.status}`);
     }
@@ -33,7 +31,7 @@ export default function BlogsEdit() {
   };
 
   const getBlogs = async () => {
-    const response = await fetch("http://localhost:5000/blog");
+    const response = await fetch("/api/blog");
     if (!response.ok) {
       throw new Error(`problem while dfetching blogs ${response.status}`);
     }
@@ -42,7 +40,7 @@ export default function BlogsEdit() {
     setBlogs(data as BlogRes);
   };
   const getComments = async () => {
-    const response = await fetch("http://localhost:5000/comment");
+    const response = await fetch("/api/comment");
     if (!response.ok) {
       throw new Error(`problem while fetching comments ${response.status}`);
     }

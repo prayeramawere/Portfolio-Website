@@ -19,7 +19,7 @@ function BlogEdit() {
   const id = searchParams.get("id");
 
   const getBlogs = async () => {
-    const response = await fetch("http://localhost:5000/blog");
+    const response = await fetch("/api/blog");
     if (!response.ok) {
       console.log(
         `error occured wie trying to get response: ${response.statusText}`,

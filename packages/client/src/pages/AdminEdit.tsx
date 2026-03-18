@@ -25,7 +25,7 @@ function AdminEdit() {
       unique_code2: formData.get("unique_code2") as string,
     };
     try {
-      const res = await fetch("http://localhost:5000/secure/12ew/admin/login", {
+      const res = await fetch("/api/secure/12ew/admin/login", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -63,17 +63,14 @@ function AdminEdit() {
       image: formData.get("image") as string,
     };
     try {
-      const response = await fetch(
-        "http://localhost:5000/secure/12ew/admin/update",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formValues),
-        }
-      );
+      const response = await fetch("/api/secure/12ew/admin/update", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      });
       console.log(await response.json());
 
       navigate("/admin/user/edit");
@@ -95,7 +92,7 @@ function AdminEdit() {
   });
 
   const fetchAdmin = async () => {
-    const response = await fetch("http://localhost:5000/secure/12ew/admin", {
+    const response = await fetch("/api/secure/12ew/admin", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

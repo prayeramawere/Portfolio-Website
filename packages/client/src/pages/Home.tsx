@@ -61,11 +61,11 @@ function Home() {
 
   useEffect(() => {
     const links = {
-      link1: "http://localhost:5000/secure/12ew/admin/public",
-      link2: "http://localhost:5000/projects",
-      link3: "http://localhost:5000/comment",
-      link4: "http://localhost:5000/blog",
-      // link6: "http://localhost:5000/testimonial",
+      link1: "/api/secure/12ew/admin/public",
+      link2: "/api/projects",
+      link3: "/api/comment",
+      link4: "/api/blog",
+      // link6: "/api/testimonial",
     };
     loadData(links);
   }, []);

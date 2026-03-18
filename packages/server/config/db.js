@@ -28,12 +28,9 @@ dotenv.config();
 
 import { Pool } from "pg";
 
-const pool = new Pool({
+const client = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl:
-    process.env.NODE_ENV === "production"
-      ? { rejectUnauthorized: false }
-      : false,
+  ssl: { rejectUnauthorized: false },
 });
 
 // const client = new Client({
@@ -47,7 +44,7 @@ const pool = new Pool({
 
 const getAdminDB = async () => {
   try {
-    const response = await pool.query(get_admin_query);
+    const response = await client.query(get_admin_query);
     const adminData = response.rows;
     return adminData;
   } catch (error) {
@@ -65,7 +62,7 @@ const addAdmin = async () => {
     "x31,.wk3..s",
   ];
 
-  let response = pool.query(create_admin_query, adminData, (err, result) => {
+  let response = client.query(create_admin_query, adminData, (err, result) => {
     err
       ? (response = {
           status: "Error",
@@ -81,7 +78,7 @@ const addAdmin = async () => {
 
 const updateAdminDB = async (adminData) => {
   let response = {};
-  pool.query(update_admin_query, adminData, (err, result) => {
+  client.query(update_admin_query, adminData, (err, result) => {
     err
       ? (response = {
           status: "ERROR",
@@ -97,7 +94,7 @@ const updateAdminDB = async (adminData) => {
 
 const getBlogsDB = async () => {
   try {
-    const response = await pool.query(get_blogs_query);
+    const response = await client.query(get_blogs_query);
     const blogData = response.rows;
     return blogData;
   } catch (error) {
@@ -107,7 +104,7 @@ const getBlogsDB = async () => {
 const createBlogDB = async (blogData) => {
   let response = {};
 
-  pool.query(create_blog_query, blogData, (err, result) => {
+  client.query(create_blog_query, blogData, (err, result) => {
     err
       ? (response = {
           status: "Error",
@@ -123,7 +120,7 @@ const createBlogDB = async (blogData) => {
 
 const updateBlogDB = async (blogData) => {
   let response = {};
-  pool.query(update_blog_query, blogData, (err, result) => {
+  client.query(update_blog_query, blogData, (err, result) => {
     err
       ? (response = {
           status: "ERROR",
@@ -137,30 +134,34 @@ const updateBlogDB = async (blogData) => {
   return response;
 };
 const getBlogsById = async (id) => {
-  const response = await pool.query(get_blog_byId, [id]);
+  const response = await client.query(get_blog_byId, [id]);
   return response.rows[0];
 };
 const getViewsById = async (id) => {
-  const response = await pool.query(get_blogViews_query, [id]);
+  const response = await client.query(get_blogViews_query, [id]);
   return response.rows[0];
 };
 
 const updateViewsDB = async (views, id) => {
-  let response = pool.query(update_blogsV_query, [views, id], (err, result) => {
-    err
-      ? (response = {
-          status: "ERROR",
-          msg: err,
-        })
-      : (response = {
-          status: "SUCCESS",
-          msg: "updated views successfuly",
-        });
-  });
+  let response = client.query(
+    update_blogsV_query,
+    [views, id],
+    (err, result) => {
+      err
+        ? (response = {
+            status: "ERROR",
+            msg: err,
+          })
+        : (response = {
+            status: "SUCCESS",
+            msg: "updated views successfuly",
+          });
+    },
+  );
   return response;
 };
 const updateLikesDB = async (likes, id) => {
-  let response = pool.query(
+  let response = client.query(
     update_blogLikes_query,
     [likes, id],
     (err, result) => {
@@ -180,7 +181,7 @@ const updateLikesDB = async (likes, id) => {
 
 const deleteBlogDB = async (id) => {
   let response = {};
-  pool.query(delete_blog_query, [id], (err, result) => {
+  client.query(delete_blog_query, [id], (err, result) => {
     err
       ? (response = {
           status: "ERROR",
@@ -197,7 +198,7 @@ const deleteBlogDB = async (id) => {
 // comments
 const getCommentsDB = async () => {
   try {
-    const response = await pool.query(get_comments_query);
+    const response = await client.query(get_comments_query);
     const commentData = response.rows;
     return commentData;
   } catch (error) {
@@ -208,7 +209,7 @@ console.log("comments are", getCommentsDB);
 const createCommentDB = async (commentData) => {
   let response = {};
 
-  pool.query(create_comment_query, commentData, (err, result) => {
+  client.query(create_comment_query, commentData, (err, result) => {
     err
       ? (response = {
           status: "Error",
@@ -224,7 +225,7 @@ const createCommentDB = async (commentData) => {
 
 const updateCommentDB = async (commentData) => {
   let response = {};
-  pool.query(update_comment_query, commentData, (err, result) => {
+  client.query(update_comment_query, commentData, (err, result) => {
     err
       ? (response = {
           status: "ERROR",
@@ -238,13 +239,13 @@ const updateCommentDB = async (commentData) => {
   return response;
 };
 const getCommentsById = async (id) => {
-  const response = await pool.query(get_comment_byId, [id]);
+  const response = await client.query(get_comment_byId, [id]);
   return response.rows;
 };
 
 const deleteCommentDB = async (id) => {
   let response = {};
-  pool.query(delete_comment_query, [id], (err, result) => {
+  client.query(delete_comment_query, [id], (err, result) => {
     err
       ? (response = {
           status: "ERROR",
@@ -261,7 +262,7 @@ const deleteCommentDB = async (id) => {
 //Projects
 const getProjectsDB = async () => {
   try {
-    const response = await pool.query(get_projects_query);
+    const response = await client.query(get_projects_query);
     const projectData = response.rows;
     return projectData;
   } catch (error) {
@@ -271,7 +272,7 @@ const getProjectsDB = async () => {
 const createProjectDB = async (projectData) => {
   let response = {};
 
-  pool.query(create_project_query, projectData, (err, result) => {
+  client.query(create_project_query, projectData, (err, result) => {
     err
       ? (response = {
           status: "Error",
@@ -287,7 +288,7 @@ const createProjectDB = async (projectData) => {
 
 const updateProjectDB = async (projectData) => {
   let response = {};
-  pool.query(update_project_query, projectData, (err, result) => {
+  client.query(update_project_query, projectData, (err, result) => {
     err
       ? (response = {
           status: "ERROR",
@@ -301,13 +302,13 @@ const updateProjectDB = async (projectData) => {
   return response;
 };
 const getProjectById = async (id) => {
-  const response = await pool.query(get_project_byId, [id]);
+  const response = await client.query(get_project_byId, [id]);
   return response.rows;
 };
 
 const deleteProjectDB = async (id) => {
   let response = {};
-  pool.query(delete_project_query, [id], (err, result) => {
+  client.query(delete_project_query, [id], (err, result) => {
     err
       ? (response = {
           status: "ERROR",
