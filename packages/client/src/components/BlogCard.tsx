@@ -23,7 +23,7 @@ function BlogCard({
     views,
   } = blogs;
   const currentBlogComments =
-    comments.filter((comment) => comment.blogid == Number(id)) || [];
+    comments.filter((comment: comment) => comment.blogid == Number(id)) || [];
   const { ref, inView } = useInView();
 
   const formartDate = Intl.DateTimeFormat("en-us", {

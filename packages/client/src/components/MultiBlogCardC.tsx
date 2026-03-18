@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import type { BlogCardType } from "../../lib/types";
 
 function MultiBlogCard({ blogs }: { blogs: BlogCardType }) {
-  const { id, title, subtitle, description, image, link } = blogs;
+  const { id, title, subtitle, _message, _image, link } = blogs;
 
   const token = localStorage.getItem("token");
 
@@ -16,7 +16,7 @@ function MultiBlogCard({ blogs }: { blogs: BlogCardType }) {
           <div className="flex gap-5">
             <div
               className="sm:hidden size-[60px] bg-primary bg-cover bg-center rounded-lg"
-              style={{ backgroundImage: `url(${image})` }}
+              style={{ backgroundImage: `url(${_image})` }}
             ></div>
             <span>
               <h1 className="font-bold text-lg sm:text-lg text-background">
@@ -29,7 +29,7 @@ function MultiBlogCard({ blogs }: { blogs: BlogCardType }) {
           </div>
 
           <div className="mt-4 text-white-faint text-sm">
-            {description.split("").slice(0, 100)}
+            {_message.split("").slice(0, 100)}
 
             <div className="flex justify-between mt-4">
               <Link
@@ -44,7 +44,7 @@ function MultiBlogCard({ blogs }: { blogs: BlogCardType }) {
         <div className="w-full sm:w-[30%] flex justify-center items-center p-2 sm:p-10 ">
           <div
             className="hidden sm:block size-[150px] bg-primary bg-cover bg-center hover:bg-blue-300 rounded-lg transition-all duration-300"
-            style={{ backgroundImage: `url(${image})` }}
+            style={{ backgroundImage: `url(${_image})` }}
           ></div>
         </div>
       </div>
