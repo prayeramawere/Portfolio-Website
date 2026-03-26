@@ -8,6 +8,7 @@ import BaseNav from "@/components/BaseNav";
 import FloatingNav from "@/components/FloatingNav";
 import Footer from "@/components/Footer";
 import { Heart } from "lucide-react";
+import { API_URL } from "@/assets/api";
 
 const md = markdownit();
 
@@ -20,7 +21,7 @@ function Blog() {
   const { id } = useParams();
 
   const addLike = async () => {
-    await fetch("/api/blog/update_likes", {
+    await fetch(`${API_URL}/api/blog/update_likes`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +43,7 @@ function Blog() {
     };
 
     try {
-      const res = await fetch("/api/comment", {
+      const res = await fetch(`${API_URL}/api/comment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +74,7 @@ function Blog() {
     setBlog(await data.data);
   };
   const getComments = async () => {
-    const response = await fetch("/api/comment");
+    const response = await fetch(`${API_URL}/api/comment`);
     if (!response.ok) {
       console.log(
         `error occured wie trying to get response: ${response.statusText}`,
@@ -102,7 +103,7 @@ function Blog() {
 
     setViews(newViews);
 
-    await fetch("/api/blog/update", {
+    await fetch(`${API_URL}/api/blog/update`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

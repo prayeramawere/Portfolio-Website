@@ -11,6 +11,7 @@ import MultiBlogCard from "../components/MultiBlogCard";
 import SearchForm from "../components/SearchForm";
 import { useSearchParams } from "react-router-dom";
 import BlogCard from "@/components/BlogCard";
+import { API_URL } from "@/assets/api";
 
 export default function BlogsEdit() {
   const [searchParams] = useSearchParams();
@@ -21,7 +22,7 @@ export default function BlogsEdit() {
   const [comments, setComments] = useState<CommentsRes | null>(null);
 
   const getAdmin = async () => {
-    const response = await fetch("/api/secure/12ew/admin/public");
+    const response = await fetch(`${API_URL}/api/secure/12ew/admin/public`);
     if (!response.ok) {
       throw new Error(`problem while fetching admin ${response.status}`);
     }
@@ -31,7 +32,7 @@ export default function BlogsEdit() {
   };
 
   const getBlogs = async () => {
-    const response = await fetch("/api/blog");
+    const response = await fetch(`${API_URL}/api/blog`);
     if (!response.ok) {
       throw new Error(`problem while dfetching blogs ${response.status}`);
     }
@@ -40,7 +41,7 @@ export default function BlogsEdit() {
     setBlogs(data as BlogRes);
   };
   const getComments = async () => {
-    const response = await fetch("/api/comment");
+    const response = await fetch(`${API_URL}/api/comment`);
     if (!response.ok) {
       throw new Error(`problem while fetching comments ${response.status}`);
     }

@@ -4,6 +4,7 @@ import type { PrivateAdminData, AdminRes } from "../../lib/types";
 import { useActionState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "@/assets/api";
 
 function AdminEdit() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ function AdminEdit() {
       unique_code2: formData.get("unique_code2") as string,
     };
     try {
-      const res = await fetch("/api/secure/12ew/admin/login", {
+      const res = await fetch(`${API_URL}/api/secure/12ew/admin/login`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -63,7 +64,7 @@ function AdminEdit() {
       image: formData.get("image") as string,
     };
     try {
-      const response = await fetch("/api/secure/12ew/admin/update", {
+      const response = await fetch(`${API_URL}/api/secure/12ew/admin/update`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -92,7 +93,7 @@ function AdminEdit() {
   });
 
   const fetchAdmin = async () => {
-    const response = await fetch("/api/secure/12ew/admin", {
+    const response = await fetch(`${API_URL}/api/secure/12ew/admin`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -20,6 +20,7 @@ import ProductSection from "@/components/ProductSection";
 import PersonalProjects from "@/components/PersonalProjects";
 import FloatingNav from "@/components/FloatingNav";
 import Footer from "@/components/Footer";
+import { API_URL } from "@/assets/api";
 
 function Home() {
   const [admin, setAdmin] = useState<AdminRes | null>();
@@ -61,11 +62,11 @@ function Home() {
 
   useEffect(() => {
     const links = {
-      link1: "/api/secure/12ew/admin/public",
-      link2: "/api/projects",
-      link3: "/api/comment",
-      link4: "/api/blog",
-      // link6: "/api/testimonial",
+      link1: `${API_URL}/api/secure/12ew/admin/public`,
+      link2: `${API_URL}/api/projects`,
+      link3: `${API_URL}/api/comment`,
+      link4: `${API_URL}/api/blog`,
+      // link6: `${API_URL}/api/testimonial",
     };
     loadData(links);
   }, []);

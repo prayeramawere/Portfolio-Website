@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useActionState, useEffect, useState } from "react";
 import BaseNav from "@/components/BaseNav";
 import BlogForm from "@/components/BlogForm";
+import { API_URL } from "@/assets/api";
 
 type blog = {
   id: number;
@@ -19,7 +20,7 @@ function BlogEdit() {
   const id = searchParams.get("id");
 
   const getBlogs = async () => {
-    const response = await fetch("/api/blog");
+    const response = await fetch(`${API_URL}/api/blog`);
     if (!response.ok) {
       console.log(
         `error occured wie trying to get response: ${response.statusText}`,
