@@ -16,7 +16,7 @@ import FeedBack from "./pages/FeedBack";
 
 function App() {
   return (
-    <HashRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
@@ -27,7 +27,7 @@ function App() {
         <Route path="/blog/:id" element={<Blog />}></Route>
         <Route path="/feedback/new/:token" element={<FeedBack />}></Route>
       </Routes>
-    </HashRouter>
+    </Router>
   );
 }
 
