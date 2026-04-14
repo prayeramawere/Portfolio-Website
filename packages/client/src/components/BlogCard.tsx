@@ -59,7 +59,7 @@ function BlogCard({
 
             <div className="flex justify-between mt-4"></div>
           </div>
-          <div className="w-full h-10 flex justify-end px-4 items-center gap-2 text-sm text-white-faint ">
+          <div className="w-full h-10 flex justify-end px-4.5 items-center gap-2 text-sm text-white-faint ">
             <span className="mr-auto">
               {formartDate.format(new Date(_created_at))}
             </span>
