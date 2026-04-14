@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import type { BlogCardType, comment } from "../../lib/types";
 import { Eye, Heart, MessageCircleIcon } from "lucide-react";
+import { API_URL } from "../assets/api.ts";
 
 function MultiBlogCard({
   blogs,
@@ -81,16 +82,13 @@ function MultiBlogCard({
           <button
             className="text-red-400 cursor-pointer hover:shadow-sm  px-2 py-1 rounded-md"
             onClick={async () => {
-              const response = await fetch(
-                `http://localhost:5000/blog/${id}/`,
-                {
-                  method: "delete",
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                    type: "applicattion/json",
-                  },
+              const response = await fetch(`${API_URL}/blog/${id}/`, {
+                method: "delete",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  type: "applicattion/json",
                 },
-              );
+              });
               console.log(await response.json());
             }}
           >

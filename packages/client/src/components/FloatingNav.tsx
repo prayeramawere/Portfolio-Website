@@ -15,10 +15,10 @@ function FloatingNav() {
           <a href="/blogs">
             <li className="link">blogs</li>
           </a>
-          <a href="#contact">
+          <a href="./#contact">
             <li className="link">contact</li>
           </a>
-          <a href="#projects">
+          <a href="./#projects">
             <li className="link">projects</li>
           </a>
         </ul>
