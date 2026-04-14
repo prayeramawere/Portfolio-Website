@@ -1,7 +1,12 @@
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  HashRouter,
+} from "react-router-dom";
 import BlogsEdit from "./pages/BlogsEdit";
 import AdminEdit from "./pages/AdminEdit";
 import BlogEdit from "./pages/BlogEdit";
@@ -11,7 +16,7 @@ import FeedBack from "./pages/FeedBack";
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
@@ -22,7 +27,7 @@ function App() {
         <Route path="/blog/:id" element={<Blog />}></Route>
         <Route path="/feedback/new/:token" element={<FeedBack />}></Route>
       </Routes>
-    </Router>
+    </HashRouter>
   );
 }
 
