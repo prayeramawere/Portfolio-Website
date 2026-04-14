@@ -63,7 +63,7 @@ function Blog() {
   const [state, action, loading] = useActionState(handleFormSubmit, "test");
 
   const getBlog = async () => {
-    const response = await fetch(`/api/blog/${id}`);
+    const response = await fetch(`${API_URL}/api/blog/${id}`);
     if (!response.ok) {
       console.log(
         `error occured wie trying to get response: ${response.statusText}`,
@@ -87,7 +87,7 @@ function Blog() {
   };
 
   const getViews = async () => {
-    const response = await fetch(`/api/blog/views/${id}`);
+    const response = await fetch(`${API_URL}/api/blog/views/${id}`);
 
     if (!response.ok) {
       console.log(
