@@ -16,6 +16,7 @@ import Hero from "../components/Hero";
 
 import About from "@/components/About";
 import BlogSection from "@/components/BlogSection";
+import MainProject from "@/components/mainProject";
 import ProductSection from "@/components/ProductSection";
 import PersonalProjects from "@/components/PersonalProjects";
 import FloatingNav from "@/components/FloatingNav";
@@ -116,7 +117,13 @@ function Home() {
     <>
       <div className="scroll-smooth">
         <BaseNav />
-        <Hero data={[social, name || "", role || "not there", bio || ""]} />
+        <Hero
+          data={[social, name || "", role || "not there", bio || ""]}
+        />{" "}
+        <br />
+        <div className="w-full flex justify-center items-center mt-10">
+          <MainProject />
+        </div>
         <About bio={bio || ""} />
         <center>
           <hr className="w-[60%] text-primary" />

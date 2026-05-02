@@ -13,6 +13,8 @@ import BlogEdit from "./pages/BlogEdit";
 import Blogs from "./pages/Blogs";
 import Blog from "./pages/Blog";
 import FeedBack from "./pages/FeedBack";
+import ProjectsEdit from "./pages/ProjectsEdit";
+import ProjectEdit from "./pages/ProjectEdit";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/blogs/edit" element={<BlogsEdit />} />
+        <Route path="/admin/project/create" element={<ProjectEdit />} />
+        <Route path="/admin/projects/edit" element={<ProjectsEdit />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/admin/user/edit" element={<AdminEdit />} />
         <Route path="/admin/user/edit/blog" element={<BlogEdit />} />

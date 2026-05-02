@@ -35,11 +35,11 @@ function Admin() {
       });
       const data = await res.json();
       console.log("data recieved from login is:", data);
-      if (data.success == true) {
+      if (data.success === true) {
+        localStorage.setItem("token", data?.token);
         navigate("/admin");
       }
       setData(data as postRes);
-      localStorage.setItem("token", resData?.token);
     } catch (error) {
       console.log(error);
     }
@@ -73,8 +73,10 @@ function Admin() {
   };
 
   useEffect(() => {
-    fetchAdmin();
-  }, []);
+    if (token) {
+      fetchAdmin();
+    }
+  }, [token]);
 
   const session = adminInfo;
   console.log(adminInfo);
@@ -144,6 +146,12 @@ function Admin() {
           <ul className=" grid grid-cols-1 gap-3 ">
             <Link to="/admin/blogs/edit">
               <li className="category-card">Blogs and Articles</li>
+            </Link>
+            <Link to="/admin/projects/edit">
+              <li className="category-card">Projects</li>
+            </Link>
+            <Link to="/admin/project/create">
+              <li className="category-card">CreateProject</li>
             </Link>
             <Link to="/admin/user/edit">
               <li className="category-card">User</li>
